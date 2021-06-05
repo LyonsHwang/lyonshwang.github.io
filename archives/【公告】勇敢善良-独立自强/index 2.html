@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="下面给大家表演一个四肢健全的博客: 公式块equation \begin{equation} \begin{split}   a &amp;&#x3D;b+c\\       &amp;&#x3D;e+f \end{split} \end{equation} \tag 1align \begin{align}    a&amp;&#x3D;b+c \\    d+e&amp;&#x3D;f \end{align} \tag 2gather \begin{gather}">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【公告】勇敢善良，独立自强">
+<meta property="og:url" content="http://lyons.press/archives/%E3%80%90%E5%85%AC%E5%91%8A%E3%80%91%E5%8B%87%E6%95%A2%E5%96%84%E8%89%AF-%E7%8B%AC%E7%AB%8B%E8%87%AA%E5%BC%BA/index.html">
+<meta property="og:site_name" content="Lyons Press">
+<meta property="og:description" content="下面给大家表演一个四肢健全的博客: 公式块equation \begin{equation} \begin{split}   a &amp;&#x3D;b+c\\       &amp;&#x3D;e+f \end{split} \end{equation} \tag 1align \begin{align}    a&amp;&#x3D;b+c \\    d+e&amp;&#x3D;f \end{align} \tag 2gather \begin{gather}">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-05-28T17:55:37.000Z">
+<meta property="article:modified_time" content="2021-05-30T06:30:13.125Z">
+<meta property="article:author" content="Lyons Hwang">
+<meta property="article:tag" content="博客">
+<meta property="article:tag" content="前端">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>【公告】勇敢善良，独立自强</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+  <!-- mouse fireworks -->
+  <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> 
+  <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+  <script type="text/javascript">
+    function updateCoords(e) {
+      pointerX = (e.clientX || e.touches[0].clientX) - canvasEl.getBoundingClientRect().left;
+      pointerY = (e.clientY || e.touches[0].clientY) - canvasEl.getBoundingClientRect().top;
+    }
+    function setParticuleDirection(e) {
+      var t = anime.random(0, 360) * Math.PI / 180
+      var a = anime.random(20, 40);
+      var n = [-1, 1][anime.random(0, 1)] * a;
+      return { x: e.x + n * Math.cos(t), y: e.y + n * Math.sin(t) };
+    }
+    function createParticule(e, t) {
+      var a = {};
+      a.x = e;
+      a.y = t;
+      a.color = colors[anime.random(0, colors.length - 1)];
+      a.radius = anime.random(4, 8);
+      a.endPos = setParticuleDirection(a);
+      a.draw = function () {
+        ctx.beginPath();
+        ctx.arc(a.x, a.y, a.radius, 0, 2 * Math.PI, !0);
+        ctx.fillStyle = a.color;
+        ctx.fill()
+      };
+      return a;
+    }
+    function createCircle(e, t) {
+      var a = {};
+      a.x = e;
+      a.y = t;
+      a.color = "#F00";
+      a.radius = 0.1;
+      a.alpha = 0.5;
+      a.lineWidth = 6;
+      a.draw = function () {
+        ctx.globalAlpha = a.alpha;
+        ctx.beginPath();
+        ctx.arc(a.x, a.y, a.radius, 0, 2 * Math.PI, !0);
+        ctx.lineWidth = a.lineWidth;
+        ctx.strokeStyle = a.color;
+        ctx.stroke();
+        ctx.globalAlpha = 1;
+      };
+      return a;
+    }
+
+    function renderParticule(e) {
+      for (var t = 0; t < e.animatables.length; t++) {
+        e.animatables[t].target.draw()
+      }
+    }
+
+    function animateParticules(e, t) {
+      for (var a = createCircle(e, t), n = [], i = 0; i < numberOfParticules; i++) {
+        n.push(createParticule(e, t));
+      }
+      anime.timeline().add({
+        targets: n,
+        x: function (e) { return e.endPos.x },
+        y: function (e) { return e.endPos.y },
+        radius: 0.05,
+        duration: anime.random(1200, 1800),
+        easing: "easeOutExpo",
+        update: renderParticule
+      });
+      anime.timeline().add({
+        targets: a,
+        radius: anime.random(20, 40),
+        lineWidth: 0,
+        alpha: { value: 0, easing: "linear", duration: anime.random(600, 800) },
+        duration: anime.random(1200, 1800),
+        easing: "easeOutExpo",
+        update: renderParticule,
+        offset: 0
+      })
+    }
+
+    function debounce(e, t) {
+      var a;
+      return function () {
+        var n = this;
+        var i = arguments;
+        clearTimeout(a);
+        a = setTimeout(function () { e.apply(n, i) }, t);
+      }
+    }
+    var canvasEl = document.querySelector(".fireworks");
+
+    if (canvasEl) {
+      var ctx = canvasEl.getContext("2d");
+      var numberOfParticules = 30;
+      var pointerX = 0;
+      var pointerY = 0;
+      var tap = "mousedown";
+      var colors = ["#FF1461", "#18FF92", "#5A87FF", "#FBF38C"];
+      var setCanvasSize = debounce(
+        function () {
+          canvasEl.width = 2 * window.innerWidth;
+          canvasEl.height = 2 * window.innerHeight;
+          canvasEl.style.width = window.innerWidth + "px";
+          canvasEl.style.height = window.innerHeight + "px";
+          canvasEl.getContext("2d").scale(2, 2);
+        },
+        500
+      );
+      var render = anime({
+        duration: 1 / 0,
+        update: function () { ctx.clearRect(0, 0, canvasEl.width, canvasEl.height) }
+      });
+      document.addEventListener(
+        tap,
+        function (e) {
+          if ("sidebar" !== e.target.id && "toggle-sidebar" !== e.target.id && "A" !== e.target.nodeName && "IMG" !== e.target.nodeName) {
+            render.play();
+            updateCoords(e);
+            animateParticules(pointerX, pointerY);
+          }
+        },
+        !1
+      );
+      setCanvasSize();
+      window.addEventListener("resize", setCanvasSize, !1);
+    }
+  </script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="max-width mx-auto px3 ltr">    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" "Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/LyonsHwang/lyonshwang.github.io">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post " href="/archives/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%91%E4%BA%8C%E9%A1%B9%E5%BC%8F%E5%8F%8D%E6%BC%94/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Back to top " href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post " href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://lyons.press/archives/%E3%80%90%E5%85%AC%E5%91%8A%E3%80%91%E5%8B%87%E6%95%A2%E5%96%84%E8%89%AF-%E7%8B%AC%E7%AB%8B%E8%87%AA%E5%BC%BA/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://lyons.press/archives/%E3%80%90%E5%85%AC%E5%91%8A%E3%80%91%E5%8B%87%E6%95%A2%E5%96%84%E8%89%AF-%E7%8B%AC%E7%AB%8B%E8%87%AA%E5%BC%BA/&text=【公告】勇敢善良，独立自强"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://lyons.press/archives/%E3%80%90%E5%85%AC%E5%91%8A%E3%80%91%E5%8B%87%E6%95%A2%E5%96%84%E8%89%AF-%E7%8B%AC%E7%AB%8B%E8%87%AA%E5%BC%BA/&title=【公告】勇敢善良，独立自强"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://lyons.press/archives/%E3%80%90%E5%85%AC%E5%91%8A%E3%80%91%E5%8B%87%E6%95%A2%E5%96%84%E8%89%AF-%E7%8B%AC%E7%AB%8B%E8%87%AA%E5%BC%BA/&is_video=false&description=【公告】勇敢善良，独立自强"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=【公告】勇敢善良，独立自强&body=Check out this article: http://lyons.press/archives/%E3%80%90%E5%85%AC%E5%91%8A%E3%80%91%E5%8B%87%E6%95%A2%E5%96%84%E8%89%AF-%E7%8B%AC%E7%AB%8B%E8%87%AA%E5%BC%BA/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://lyons.press/archives/%E3%80%90%E5%85%AC%E5%91%8A%E3%80%91%E5%8B%87%E6%95%A2%E5%96%84%E8%89%AF-%E7%8B%AC%E7%AB%8B%E8%87%AA%E5%BC%BA/&title=【公告】勇敢善良，独立自强"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://lyons.press/archives/%E3%80%90%E5%85%AC%E5%91%8A%E3%80%91%E5%8B%87%E6%95%A2%E5%96%84%E8%89%AF-%E7%8B%AC%E7%AB%8B%E8%87%AA%E5%BC%BA/&title=【公告】勇敢善良，独立自强"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://lyons.press/archives/%E3%80%90%E5%85%AC%E5%91%8A%E3%80%91%E5%8B%87%E6%95%A2%E5%96%84%E8%89%AF-%E7%8B%AC%E7%AB%8B%E8%87%AA%E5%BC%BA/&title=【公告】勇敢善良，独立自强"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://lyons.press/archives/%E3%80%90%E5%85%AC%E5%91%8A%E3%80%91%E5%8B%87%E6%95%A2%E5%96%84%E8%89%AF-%E7%8B%AC%E7%AB%8B%E8%87%AA%E5%BC%BA/&title=【公告】勇敢善良，独立自强"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://lyons.press/archives/%E3%80%90%E5%85%AC%E5%91%8A%E3%80%91%E5%8B%87%E6%95%A2%E5%96%84%E8%89%AF-%E7%8B%AC%E7%AB%8B%E8%87%AA%E5%BC%BA/&name=【公告】勇敢善良，独立自强&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://lyons.press/archives/%E3%80%90%E5%85%AC%E5%91%8A%E3%80%91%E5%8B%87%E6%95%A2%E5%96%84%E8%89%AF-%E7%8B%AC%E7%AB%8B%E8%87%AA%E5%BC%BA/&t=【公告】勇敢善良，独立自强"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AC%E5%BC%8F%E5%9D%97"><span class="toc-number">1.</span> <span class="toc-text">公式块</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#equation"><span class="toc-number">1.1.</span> <span class="toc-text">equation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#align"><span class="toc-number">1.2.</span> <span class="toc-text">align</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#gather"><span class="toc-number">1.3.</span> <span class="toc-text">gather</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#alignat"><span class="toc-number">1.4.</span> <span class="toc-text">alignat</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cases"><span class="toc-number">1.5.</span> <span class="toc-text">cases</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#array"><span class="toc-number">1.6.</span> <span class="toc-text">array</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%9D%97"><span class="toc-number">2.</span> <span class="toc-text">代码块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%95%E7%94%A8%E5%9D%97"><span class="toc-number">3.</span> <span class="toc-text">引用块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">4.</span> <span class="toc-text">参考</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        【公告】勇敢善良，独立自强
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Lyons Hwang</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2021-05-28T17:55:37.000Z" itemprop="datePublished">2021-05-29</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a>, <a class="tag-link-link" href="/tags/%E5%8D%9A%E5%AE%A2/" rel="tag">博客</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>下面给大家表演一个四肢健全的博客:</p>
+<h2 id="公式块"><a href="#公式块" class="headerlink" title="公式块"></a>公式块</h2><h3 id="equation"><a href="#equation" class="headerlink" title="equation"></a>equation</h3><script type="math/tex; mode=display">
+\begin{equation}
+\begin{split}   a &=b+c\\
+      &=e+f
+\end{split}
+\end{equation}
+\tag 1</script><h3 id="align"><a href="#align" class="headerlink" title="align"></a>align</h3><script type="math/tex; mode=display">
+\begin{align}
+   a&=b+c \\
+   d+e&=f
+\end{align}
+\tag 2</script><h3 id="gather"><a href="#gather" class="headerlink" title="gather"></a>gather</h3><script type="math/tex; mode=display">
+\begin{gather}
+   a=b \\
+   e=b+c
+\end{gather}
+\tag 3</script><h3 id="alignat"><a href="#alignat" class="headerlink" title="alignat"></a>alignat</h3><script type="math/tex; mode=display">
+\begin{alignat}{2}
+   10&x+&3&y=2\\
+   3&x+&13&y=4
+\end{alignat}
+\tag 4</script><h3 id="cases"><a href="#cases" class="headerlink" title="cases"></a>cases</h3><script type="math/tex; mode=display">
+x = \begin{cases}
+   a &\text{if } b \\
+   c &\text{if } d
+\end{cases}
+\tag 5</script><h3 id="array"><a href="#array" class="headerlink" title="array"></a>array</h3><script type="math/tex; mode=display">
+\def\arraystretch{1.5}
+   \begin{array}{c:c:c}
+   a & b & c \\ \hline
+   d & e & f \\
+   \hdashline
+   g & h & i
+\end{array}
+\tag 6</script><h2 id="代码块"><a href="#代码块" class="headerlink" title="代码块"></a>代码块</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">DRMQ</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    vector&lt;ll&gt; t;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">(<span class="keyword">int</span> n_)</span> </span>&#123;</span><br><span class="line">        n=n_;</span><br><span class="line">        t.<span class="built_in">assign</span>(<span class="number">2</span>*n,INF64);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">update</span><span class="params">(<span class="keyword">int</span> g,ll v)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(t[g+=n]=v;g&gt;<span class="number">1</span>;g&gt;&gt;=<span class="number">1</span>)</span><br><span class="line">            t[g&gt;&gt;<span class="number">1</span>]=<span class="built_in">min</span>(t[g],t[g^<span class="number">1</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function">ll <span class="title">query</span><span class="params">(<span class="keyword">int</span> l,<span class="keyword">int</span> r)</span> </span>&#123;</span><br><span class="line">        ll res=INF64;</span><br><span class="line">        <span class="keyword">for</span>(l+=n,r+=n;l&lt;r;l&gt;&gt;=<span class="number">1</span>,r&gt;&gt;=<span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span>(l&amp;<span class="number">1</span>) <span class="built_in">umin</span>(res,t[l++]);</span><br><span class="line">            <span class="keyword">if</span>(r&amp;<span class="number">1</span>) <span class="built_in">umin</span>(res,t[--r]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="引用块"><a href="#引用块" class="headerlink" title="引用块"></a>引用块</h2><blockquote>
+<p>迷麟与龙长老在一起生活了好几天，才发现龙长老是看不见东西的。这让他很好奇，他想不通龙长老为什么看不见东西却照样能到处走，做各种事，还能杀人？他试着考验龙长老的能力，把龙长老的东西故意改变位置，然后看着龙长老被自己捉弄得很狼狈的样子开心地大笑。</p>
+</blockquote>
+<div></div>
+
+<blockquote>
+<p>龙长老并不介意，也不急着收拾被迷麟弄乱的东西，而是由着迷麟去折腾。这样的时候，他总会想起自己做孩子的时候的一些往事，然后沿着这些往事的线索，把好多已经失去的回忆一点点地 找回来。</p>
+</blockquote>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/26625249">如何使用Hexo框架?</a><ul>
+<li><a target="_blank" rel="noopener" href="http://hexo.io/themes/">Hexo主题</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.shouce.ren/api/html/html4/appendix-color.html">HTML颜色对照表</a></li>
+</ul>
+</li>
+<li><a target="_blank" rel="noopener" href="https://ranmaosong.github.io/2017/11/29/hexo-support-mathjax/">如何渲染KaTeX语法?</a><ul>
+<li><a target="_blank" rel="noopener" href="https://katex.org/docs/supported.html">KaTeX语法文档</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/yexiaohhjk/article/details/82526604">如果部署到Github后没有显示</a></li>
+</ul>
+</li>
+<li><a target="_blank" rel="noopener" href="https://zihengcat.github.io/2018/03/05/Hexo博客添加highlight-js代码高亮/">如何添加Highlight.js代码高亮?</a><ul>
+<li><a target="_blank" rel="noopener" href="https://highlightjs.org/static/demo/">Highlight.js主题</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/LyonsHwang/lyonshwang.github.io">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AC%E5%BC%8F%E5%9D%97"><span class="toc-number">1.</span> <span class="toc-text">公式块</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#equation"><span class="toc-number">1.1.</span> <span class="toc-text">equation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#align"><span class="toc-number">1.2.</span> <span class="toc-text">align</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#gather"><span class="toc-number">1.3.</span> <span class="toc-text">gather</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#alignat"><span class="toc-number">1.4.</span> <span class="toc-text">alignat</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cases"><span class="toc-number">1.5.</span> <span class="toc-text">cases</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#array"><span class="toc-number">1.6.</span> <span class="toc-text">array</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%9D%97"><span class="toc-number">2.</span> <span class="toc-text">代码块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%95%E7%94%A8%E5%9D%97"><span class="toc-number">3.</span> <span class="toc-text">引用块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">4.</span> <span class="toc-text">参考</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://lyons.press/archives/%E3%80%90%E5%85%AC%E5%91%8A%E3%80%91%E5%8B%87%E6%95%A2%E5%96%84%E8%89%AF-%E7%8B%AC%E7%AB%8B%E8%87%AA%E5%BC%BA/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://lyons.press/archives/%E3%80%90%E5%85%AC%E5%91%8A%E3%80%91%E5%8B%87%E6%95%A2%E5%96%84%E8%89%AF-%E7%8B%AC%E7%AB%8B%E8%87%AA%E5%BC%BA/&text=【公告】勇敢善良，独立自强"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://lyons.press/archives/%E3%80%90%E5%85%AC%E5%91%8A%E3%80%91%E5%8B%87%E6%95%A2%E5%96%84%E8%89%AF-%E7%8B%AC%E7%AB%8B%E8%87%AA%E5%BC%BA/&title=【公告】勇敢善良，独立自强"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://lyons.press/archives/%E3%80%90%E5%85%AC%E5%91%8A%E3%80%91%E5%8B%87%E6%95%A2%E5%96%84%E8%89%AF-%E7%8B%AC%E7%AB%8B%E8%87%AA%E5%BC%BA/&is_video=false&description=【公告】勇敢善良，独立自强"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=【公告】勇敢善良，独立自强&body=Check out this article: http://lyons.press/archives/%E3%80%90%E5%85%AC%E5%91%8A%E3%80%91%E5%8B%87%E6%95%A2%E5%96%84%E8%89%AF-%E7%8B%AC%E7%AB%8B%E8%87%AA%E5%BC%BA/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://lyons.press/archives/%E3%80%90%E5%85%AC%E5%91%8A%E3%80%91%E5%8B%87%E6%95%A2%E5%96%84%E8%89%AF-%E7%8B%AC%E7%AB%8B%E8%87%AA%E5%BC%BA/&title=【公告】勇敢善良，独立自强"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://lyons.press/archives/%E3%80%90%E5%85%AC%E5%91%8A%E3%80%91%E5%8B%87%E6%95%A2%E5%96%84%E8%89%AF-%E7%8B%AC%E7%AB%8B%E8%87%AA%E5%BC%BA/&title=【公告】勇敢善良，独立自强"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://lyons.press/archives/%E3%80%90%E5%85%AC%E5%91%8A%E3%80%91%E5%8B%87%E6%95%A2%E5%96%84%E8%89%AF-%E7%8B%AC%E7%AB%8B%E8%87%AA%E5%BC%BA/&title=【公告】勇敢善良，独立自强"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://lyons.press/archives/%E3%80%90%E5%85%AC%E5%91%8A%E3%80%91%E5%8B%87%E6%95%A2%E5%96%84%E8%89%AF-%E7%8B%AC%E7%AB%8B%E8%87%AA%E5%BC%BA/&title=【公告】勇敢善良，独立自强"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://lyons.press/archives/%E3%80%90%E5%85%AC%E5%91%8A%E3%80%91%E5%8B%87%E6%95%A2%E5%96%84%E8%89%AF-%E7%8B%AC%E7%AB%8B%E8%87%AA%E5%BC%BA/&name=【公告】勇敢善良，独立自强&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://lyons.press/archives/%E3%80%90%E5%85%AC%E5%91%8A%E3%80%91%E5%8B%87%E6%95%A2%E5%96%84%E8%89%AF-%E7%8B%AC%E7%AB%8B%E8%87%AA%E5%BC%BA/&t=【公告】勇敢善良，独立自强"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2021
+    Lyons Hwang
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/LyonsHwang/lyonshwang.github.io">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<!-- <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+</body>
+</html>
