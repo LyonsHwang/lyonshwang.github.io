@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="第一类斯特林数定义将$n$个元素划分为$k$个环(非空)的方案数为${n\brack k}$, 其中${n\brack 0}&#x3D;[n&#x3D;0]$.  s(n,k)&#x3D;(-1)^{n-k}{n\brack k}.递推 {n\brack k}&#x3D;{n-1\brack k-1}+(n-1)\cdot{n-1\brack k}.生成函数设$f_n(x)$为第一类斯特林数的生成函数,有:  f_n(x)&#x3D;\sum_{">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【数学】斯特林数">
+<meta property="og:url" content="http://lyons.press/archives/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%91%E6%96%AF%E7%89%B9%E6%9E%97%E6%95%B0/index.html">
+<meta property="og:site_name" content="Lyons Press">
+<meta property="og:description" content="第一类斯特林数定义将$n$个元素划分为$k$个环(非空)的方案数为${n\brack k}$, 其中${n\brack 0}&#x3D;[n&#x3D;0]$.  s(n,k)&#x3D;(-1)^{n-k}{n\brack k}.递推 {n\brack k}&#x3D;{n-1\brack k-1}+(n-1)\cdot{n-1\brack k}.生成函数设$f_n(x)$为第一类斯特林数的生成函数,有:  f_n(x)&#x3D;\sum_{">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-05-31T16:14:02.000Z">
+<meta property="article:modified_time" content="2021-06-01T07:04:09.968Z">
+<meta property="article:author" content="Lyons Hwang">
+<meta property="article:tag" content="反演">
+<meta property="article:tag" content="组合数学">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>【数学】斯特林数</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+  <!-- mouse fireworks -->
+  <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> 
+  <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+  <script type="text/javascript">
+    function updateCoords(e) {
+      pointerX = (e.clientX || e.touches[0].clientX) - canvasEl.getBoundingClientRect().left;
+      pointerY = (e.clientY || e.touches[0].clientY) - canvasEl.getBoundingClientRect().top;
+    }
+    function setParticuleDirection(e) {
+      var t = anime.random(0, 360) * Math.PI / 180
+      var a = anime.random(20, 40);
+      var n = [-1, 1][anime.random(0, 1)] * a;
+      return { x: e.x + n * Math.cos(t), y: e.y + n * Math.sin(t) };
+    }
+    function createParticule(e, t) {
+      var a = {};
+      a.x = e;
+      a.y = t;
+      a.color = colors[anime.random(0, colors.length - 1)];
+      a.radius = anime.random(4, 8);
+      a.endPos = setParticuleDirection(a);
+      a.draw = function () {
+        ctx.beginPath();
+        ctx.arc(a.x, a.y, a.radius, 0, 2 * Math.PI, !0);
+        ctx.fillStyle = a.color;
+        ctx.fill()
+      };
+      return a;
+    }
+    function createCircle(e, t) {
+      var a = {};
+      a.x = e;
+      a.y = t;
+      a.color = "#F00";
+      a.radius = 0.1;
+      a.alpha = 0.5;
+      a.lineWidth = 6;
+      a.draw = function () {
+        ctx.globalAlpha = a.alpha;
+        ctx.beginPath();
+        ctx.arc(a.x, a.y, a.radius, 0, 2 * Math.PI, !0);
+        ctx.lineWidth = a.lineWidth;
+        ctx.strokeStyle = a.color;
+        ctx.stroke();
+        ctx.globalAlpha = 1;
+      };
+      return a;
+    }
+
+    function renderParticule(e) {
+      for (var t = 0; t < e.animatables.length; t++) {
+        e.animatables[t].target.draw()
+      }
+    }
+
+    function animateParticules(e, t) {
+      for (var a = createCircle(e, t), n = [], i = 0; i < numberOfParticules; i++) {
+        n.push(createParticule(e, t));
+      }
+      anime.timeline().add({
+        targets: n,
+        x: function (e) { return e.endPos.x },
+        y: function (e) { return e.endPos.y },
+        radius: 0.05,
+        duration: anime.random(1200, 1800),
+        easing: "easeOutExpo",
+        update: renderParticule
+      });
+      anime.timeline().add({
+        targets: a,
+        radius: anime.random(20, 40),
+        lineWidth: 0,
+        alpha: { value: 0, easing: "linear", duration: anime.random(600, 800) },
+        duration: anime.random(1200, 1800),
+        easing: "easeOutExpo",
+        update: renderParticule,
+        offset: 0
+      })
+    }
+
+    function debounce(e, t) {
+      var a;
+      return function () {
+        var n = this;
+        var i = arguments;
+        clearTimeout(a);
+        a = setTimeout(function () { e.apply(n, i) }, t);
+      }
+    }
+    var canvasEl = document.querySelector(".fireworks");
+
+    if (canvasEl) {
+      var ctx = canvasEl.getContext("2d");
+      var numberOfParticules = 30;
+      var pointerX = 0;
+      var pointerY = 0;
+      var tap = "mousedown";
+      var colors = ["#FF1461", "#18FF92", "#5A87FF", "#FBF38C"];
+      var setCanvasSize = debounce(
+        function () {
+          canvasEl.width = 2 * window.innerWidth;
+          canvasEl.height = 2 * window.innerHeight;
+          canvasEl.style.width = window.innerWidth + "px";
+          canvasEl.style.height = window.innerHeight + "px";
+          canvasEl.getContext("2d").scale(2, 2);
+        },
+        500
+      );
+      var render = anime({
+        duration: 1 / 0,
+        update: function () { ctx.clearRect(0, 0, canvasEl.width, canvasEl.height) }
+      });
+      document.addEventListener(
+        tap,
+        function (e) {
+          if ("sidebar" !== e.target.id && "toggle-sidebar" !== e.target.id && "A" !== e.target.nodeName && "IMG" !== e.target.nodeName) {
+            render.play();
+            updateCoords(e);
+            animateParticules(pointerX, pointerY);
+          }
+        },
+        !1
+      );
+      setCanvasSize();
+      window.addEventListener("resize", setCanvasSize, !1);
+    }
+  </script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" "Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/LyonsHwang/lyonshwang.github.io">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post " href="/archives/%E3%80%90%E8%AE%B0%E5%BD%95%E3%80%91%E6%91%A9%E5%B0%94%E5%BA%84%E5%9B%AD/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post " href="/archives/%E3%80%90%E6%8A%80%E5%B7%A7%E3%80%91%E9%AB%98%E7%BB%B4%E5%89%8D%E7%BC%80%E5%92%8C/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top " href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post " href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://lyons.press/archives/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%91%E6%96%AF%E7%89%B9%E6%9E%97%E6%95%B0/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://lyons.press/archives/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%91%E6%96%AF%E7%89%B9%E6%9E%97%E6%95%B0/&text=【数学】斯特林数"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://lyons.press/archives/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%91%E6%96%AF%E7%89%B9%E6%9E%97%E6%95%B0/&title=【数学】斯特林数"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://lyons.press/archives/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%91%E6%96%AF%E7%89%B9%E6%9E%97%E6%95%B0/&is_video=false&description=【数学】斯特林数"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=【数学】斯特林数&body=Check out this article: http://lyons.press/archives/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%91%E6%96%AF%E7%89%B9%E6%9E%97%E6%95%B0/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://lyons.press/archives/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%91%E6%96%AF%E7%89%B9%E6%9E%97%E6%95%B0/&title=【数学】斯特林数"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://lyons.press/archives/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%91%E6%96%AF%E7%89%B9%E6%9E%97%E6%95%B0/&title=【数学】斯特林数"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://lyons.press/archives/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%91%E6%96%AF%E7%89%B9%E6%9E%97%E6%95%B0/&title=【数学】斯特林数"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://lyons.press/archives/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%91%E6%96%AF%E7%89%B9%E6%9E%97%E6%95%B0/&title=【数学】斯特林数"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://lyons.press/archives/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%91%E6%96%AF%E7%89%B9%E6%9E%97%E6%95%B0/&name=【数学】斯特林数&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://lyons.press/archives/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%91%E6%96%AF%E7%89%B9%E6%9E%97%E6%95%B0/&t=【数学】斯特林数"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E7%B1%BB%E6%96%AF%E7%89%B9%E6%9E%97%E6%95%B0"><span class="toc-number">1.</span> <span class="toc-text">第一类斯特林数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89"><span class="toc-number">1.1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%92%E6%8E%A8"><span class="toc-number">1.2.</span> <span class="toc-text">递推</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0"><span class="toc-number">1.3.</span> <span class="toc-text">生成函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E7%B1%BB%E6%96%AF%E7%89%B9%E6%9E%97%E6%95%B0"><span class="toc-number">2.</span> <span class="toc-text">第二类斯特林数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89-1"><span class="toc-number">2.1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%92%E6%8E%A8-1"><span class="toc-number">2.2.</span> <span class="toc-text">递推</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0-1"><span class="toc-number">2.3.</span> <span class="toc-text">生成函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%AF%E7%89%B9%E6%9E%97%E5%8F%8D%E6%BC%94"><span class="toc-number">3.</span> <span class="toc-text">斯特林反演</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%93%E8%AE%BA"><span class="toc-number">3.1.</span> <span class="toc-text">结论</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%A8%E5%AF%BC"><span class="toc-number">3.2.</span> <span class="toc-text">推导</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">4.</span> <span class="toc-text">参考</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        【数学】斯特林数
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Lyons Hwang</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2021-05-31T16:14:02.000Z" itemprop="datePublished">2021-06-01</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/%E5%8F%8D%E6%BC%94/" rel="tag">反演</a>, <a class="tag-link-link" href="/tags/%E7%BB%84%E5%90%88%E6%95%B0%E5%AD%A6/" rel="tag">组合数学</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="第一类斯特林数"><a href="#第一类斯特林数" class="headerlink" title="第一类斯特林数"></a>第一类斯特林数</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>将$n$个元素划分为$k$个环(非空)的方案数为${n\brack k}$, 其中${n\brack 0}=[n=0]$.</p>
+<script type="math/tex; mode=display">
+s(n,k)=(-1)^{n-k}{n\brack k}.</script><h3 id="递推"><a href="#递推" class="headerlink" title="递推"></a>递推</h3><script type="math/tex; mode=display">
+{n\brack k}={n-1\brack k-1}+(n-1)\cdot{n-1\brack k}.</script><h3 id="生成函数"><a href="#生成函数" class="headerlink" title="生成函数"></a>生成函数</h3><p>设$f_n(x)$为第一类斯特林数的生成函数,有:</p>
+<script type="math/tex; mode=display">
+f_n(x)=\sum_{k=0}^\infty{n\brack k}x^k.</script><p>由递推式, 知:</p>
+<script type="math/tex; mode=display">
+f_n(x)=(x+n-1)f_{n-1}(x),</script><p>故:</p>
+<script type="math/tex; mode=display">
+\begin{equation}
+\begin{split}
+f_n(x)
+&=\prod_{i=0}^{n-1}(x+i).\\
+\end{split}
+\end{equation}</script><p>即:</p>
+<script type="math/tex; mode=display">
+x^{\overline{n}}=\sum_{k=0}^n{n\brack k}x^k.</script><p>那么:</p>
+<script type="math/tex; mode=display">
+x^{\underline{n}}=\sum_{k=0}^n(-1)^{n-k}{n\brack k}x^k.</script><h2 id="第二类斯特林数"><a href="#第二类斯特林数" class="headerlink" title="第二类斯特林数"></a>第二类斯特林数</h2><h3 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h3><p>将$n$个元素划分为$k$个集合(非空)的方案数为${n\brace k}$, 其中${n\brace 0}=[n=0]$.</p>
+<script type="math/tex; mode=display">
+S(n,k)={n\brace k}.</script><h3 id="递推-1"><a href="#递推-1" class="headerlink" title="递推"></a>递推</h3><script type="math/tex; mode=display">
+{n\brace k}={n-1\brace k-1}+k\cdot{n-1\brace k}.</script><h3 id="生成函数-1"><a href="#生成函数-1" class="headerlink" title="生成函数"></a>生成函数</h3><p>设$f_n(x)$为第二类斯特林数的生成函数, 有:</p>
+<script type="math/tex; mode=display">
+f_n(x)=\sum_{k=0}^\infty{n\brace k}x^k.</script><p>由:</p>
+<script type="math/tex; mode=display">
+m^n=\sum_{i=0}^n{m\choose i}{n\brace i}\ i!,</script><p>知:</p>
+<script type="math/tex; mode=display">
+\begin{equation}
+\begin{split}
+{n\brace m}
+&={1\over m!}\sum_{i=0}^m(-1)^i{m\choose i}(m-i)^n\\
+&=\sum_{i=0}^m{(-1)^i\over i!}{(m-i)^n\over (m-i)!},
+\end{split}
+\end{equation}</script><p>故:</p>
+<script type="math/tex; mode=display">
+f_n(x)=\sum_{i=0}^\infty{(-1)^i\over i!}x^i\ \sum_{j=0}^\infty{j^n\over j!} x^j.</script><p>令$m=x$得:</p>
+<script type="math/tex; mode=display">
+x^n=\sum_{k=0}^n{n\brace k}x^\underline{k}.</script><h2 id="斯特林反演"><a href="#斯特林反演" class="headerlink" title="斯特林反演"></a>斯特林反演</h2><h3 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h3><script type="math/tex; mode=display">
+\begin{alignat}{2}
+f(n)&=\sum_{k=0}^n{n\brace k}g(k)\\
+g(n)&=\sum_{k=0}^n(-1)^{n-k}{n\brack k}f(k)
+\end{alignat}</script><p>即:</p>
+<script type="math/tex; mode=display">
+\begin{alignat}{2}
+f(n)&=\sum_{k=0}^nS(n,k)g(k)\\
+g(n)&=\sum_{k=0}^ns(n,k)f(k)
+\end{alignat}</script><h3 id="推导"><a href="#推导" class="headerlink" title="推导"></a>推导</h3><p>由:</p>
+<script type="math/tex; mode=display">
+\begin{equation}
+\begin{split}
+x^{\underline{n}}
+&=\sum_{k=0}^n(-1)^{n-k}{n\brack k}x^k\\
+&=\sum_{k=0}^n(-1)^{n-k}{n\brack k}\sum_{m=0}^k{k\brace m}x^\underline{m}\\
+&=\sum_{m=0}^nx^\underline{m}\sum_{k=m}^n(-1)^{n-k}{n\brack k}{k\brace m}.
+\end{split}
+\end{equation}</script><p>知:</p>
+<script type="math/tex; mode=display">
+\begin{equation}
+\begin{split}
+[n=m]
+&=\sum_{k=m}^n(-1)^{n-k}{n\brack k}{k\brace m},
+\end{split}
+\end{equation}</script><p>故:</p>
+<script type="math/tex; mode=display">
+\begin{equation}
+\begin{split}
+g(n)
+&=\sum_{m=0}^n[n=m]g(m)\\
+&=\sum_{m=0}^n\left[\sum_{k=m}^n(-1)^{n-k}{n\brack k}{k\brace m}\right]g(m)\\
+&=\sum_{k=0}^n(-1)^{n-k}{n\brack k}\sum_{m=0}^k{k\brace m}g(m)\\
+&=\sum_{k=0}^n(-1)^{n-k}{n\brack k}f(k).
+\end{split}
+\end{equation}</script><p>同理可推得:</p>
+<script type="math/tex; mode=display">
+\begin{equation}
+\begin{split}
+[n=m]
+&=\sum_{k=m}^n(-1)^{n-k}{n\brace k}{k\brack m}.
+\end{split}
+\end{equation}</script><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://taodaling.github.io/blog/2020/07/21/斯特林数/">入门</a></li>
+<li><a target="_blank" rel="noopener" href="https://oi-wiki.org/math/stirling/">基础</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/Mr-Spade/p/9643161.html">进阶</a></li>
+</ul>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/LyonsHwang/lyonshwang.github.io">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E7%B1%BB%E6%96%AF%E7%89%B9%E6%9E%97%E6%95%B0"><span class="toc-number">1.</span> <span class="toc-text">第一类斯特林数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89"><span class="toc-number">1.1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%92%E6%8E%A8"><span class="toc-number">1.2.</span> <span class="toc-text">递推</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0"><span class="toc-number">1.3.</span> <span class="toc-text">生成函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E7%B1%BB%E6%96%AF%E7%89%B9%E6%9E%97%E6%95%B0"><span class="toc-number">2.</span> <span class="toc-text">第二类斯特林数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89-1"><span class="toc-number">2.1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%92%E6%8E%A8-1"><span class="toc-number">2.2.</span> <span class="toc-text">递推</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0-1"><span class="toc-number">2.3.</span> <span class="toc-text">生成函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%AF%E7%89%B9%E6%9E%97%E5%8F%8D%E6%BC%94"><span class="toc-number">3.</span> <span class="toc-text">斯特林反演</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%93%E8%AE%BA"><span class="toc-number">3.1.</span> <span class="toc-text">结论</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%A8%E5%AF%BC"><span class="toc-number">3.2.</span> <span class="toc-text">推导</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">4.</span> <span class="toc-text">参考</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://lyons.press/archives/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%91%E6%96%AF%E7%89%B9%E6%9E%97%E6%95%B0/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://lyons.press/archives/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%91%E6%96%AF%E7%89%B9%E6%9E%97%E6%95%B0/&text=【数学】斯特林数"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://lyons.press/archives/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%91%E6%96%AF%E7%89%B9%E6%9E%97%E6%95%B0/&title=【数学】斯特林数"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://lyons.press/archives/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%91%E6%96%AF%E7%89%B9%E6%9E%97%E6%95%B0/&is_video=false&description=【数学】斯特林数"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=【数学】斯特林数&body=Check out this article: http://lyons.press/archives/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%91%E6%96%AF%E7%89%B9%E6%9E%97%E6%95%B0/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://lyons.press/archives/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%91%E6%96%AF%E7%89%B9%E6%9E%97%E6%95%B0/&title=【数学】斯特林数"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://lyons.press/archives/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%91%E6%96%AF%E7%89%B9%E6%9E%97%E6%95%B0/&title=【数学】斯特林数"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://lyons.press/archives/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%91%E6%96%AF%E7%89%B9%E6%9E%97%E6%95%B0/&title=【数学】斯特林数"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://lyons.press/archives/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%91%E6%96%AF%E7%89%B9%E6%9E%97%E6%95%B0/&title=【数学】斯特林数"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://lyons.press/archives/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%91%E6%96%AF%E7%89%B9%E6%9E%97%E6%95%B0/&name=【数学】斯特林数&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://lyons.press/archives/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%91%E6%96%AF%E7%89%B9%E6%9E%97%E6%95%B0/&t=【数学】斯特林数"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2021
+    Lyons Hwang
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/LyonsHwang/lyonshwang.github.io">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>

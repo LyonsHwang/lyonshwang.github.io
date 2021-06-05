@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="结论设$x$为输入信号, $h$为单位冲激响应, $y$为输出信号. 离散时间 \begin{equation} \begin{split} y[n] &amp;&#x3D;x[n]*h[n]\\ &amp;&#x3D;\sum_{k&#x3D;-\infty}^{+\infty}x[k]h[n-k]. \end{split} \end{equation}连续时间 \begin{equation} \begin{split} y(t) &amp;&#x3D;x">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【数学】线性时不变系统">
+<meta property="og:url" content="http://lyons.press/archives/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%91%E7%BA%BF%E6%80%A7%E6%97%B6%E4%B8%8D%E5%8F%98%E7%B3%BB%E7%BB%9F/index.html">
+<meta property="og:site_name" content="Lyons Press">
+<meta property="og:description" content="结论设$x$为输入信号, $h$为单位冲激响应, $y$为输出信号. 离散时间 \begin{equation} \begin{split} y[n] &amp;&#x3D;x[n]*h[n]\\ &amp;&#x3D;\sum_{k&#x3D;-\infty}^{+\infty}x[k]h[n-k]. \end{split} \end{equation}连续时间 \begin{equation} \begin{split} y(t) &amp;&#x3D;x">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-06-04T17:53:27.000Z">
+<meta property="article:modified_time" content="2021-06-04T19:06:24.205Z">
+<meta property="article:author" content="Lyons Hwang">
+<meta property="article:tag" content="卷积">
+<meta property="article:tag" content="信号与系统">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>【数学】线性时不变系统</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+  <!-- mouse fireworks -->
+  <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> 
+  <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+  <script type="text/javascript">
+    function updateCoords(e) {
+      pointerX = (e.clientX || e.touches[0].clientX) - canvasEl.getBoundingClientRect().left;
+      pointerY = (e.clientY || e.touches[0].clientY) - canvasEl.getBoundingClientRect().top;
+    }
+    function setParticuleDirection(e) {
+      var t = anime.random(0, 360) * Math.PI / 180
+      var a = anime.random(20, 40);
+      var n = [-1, 1][anime.random(0, 1)] * a;
+      return { x: e.x + n * Math.cos(t), y: e.y + n * Math.sin(t) };
+    }
+    function createParticule(e, t) {
+      var a = {};
+      a.x = e;
+      a.y = t;
+      a.color = colors[anime.random(0, colors.length - 1)];
+      a.radius = anime.random(4, 8);
+      a.endPos = setParticuleDirection(a);
+      a.draw = function () {
+        ctx.beginPath();
+        ctx.arc(a.x, a.y, a.radius, 0, 2 * Math.PI, !0);
+        ctx.fillStyle = a.color;
+        ctx.fill()
+      };
+      return a;
+    }
+    function createCircle(e, t) {
+      var a = {};
+      a.x = e;
+      a.y = t;
+      a.color = "#F00";
+      a.radius = 0.1;
+      a.alpha = 0.5;
+      a.lineWidth = 6;
+      a.draw = function () {
+        ctx.globalAlpha = a.alpha;
+        ctx.beginPath();
+        ctx.arc(a.x, a.y, a.radius, 0, 2 * Math.PI, !0);
+        ctx.lineWidth = a.lineWidth;
+        ctx.strokeStyle = a.color;
+        ctx.stroke();
+        ctx.globalAlpha = 1;
+      };
+      return a;
+    }
+
+    function renderParticule(e) {
+      for (var t = 0; t < e.animatables.length; t++) {
+        e.animatables[t].target.draw()
+      }
+    }
+
+    function animateParticules(e, t) {
+      for (var a = createCircle(e, t), n = [], i = 0; i < numberOfParticules; i++) {
+        n.push(createParticule(e, t));
+      }
+      anime.timeline().add({
+        targets: n,
+        x: function (e) { return e.endPos.x },
+        y: function (e) { return e.endPos.y },
+        radius: 0.05,
+        duration: anime.random(1200, 1800),
+        easing: "easeOutExpo",
+        update: renderParticule
+      });
+      anime.timeline().add({
+        targets: a,
+        radius: anime.random(20, 40),
+        lineWidth: 0,
+        alpha: { value: 0, easing: "linear", duration: anime.random(600, 800) },
+        duration: anime.random(1200, 1800),
+        easing: "easeOutExpo",
+        update: renderParticule,
+        offset: 0
+      })
+    }
+
+    function debounce(e, t) {
+      var a;
+      return function () {
+        var n = this;
+        var i = arguments;
+        clearTimeout(a);
+        a = setTimeout(function () { e.apply(n, i) }, t);
+      }
+    }
+    var canvasEl = document.querySelector(".fireworks");
+
+    if (canvasEl) {
+      var ctx = canvasEl.getContext("2d");
+      var numberOfParticules = 30;
+      var pointerX = 0;
+      var pointerY = 0;
+      var tap = "mousedown";
+      var colors = ["#FF1461", "#18FF92", "#5A87FF", "#FBF38C"];
+      var setCanvasSize = debounce(
+        function () {
+          canvasEl.width = 2 * window.innerWidth;
+          canvasEl.height = 2 * window.innerHeight;
+          canvasEl.style.width = window.innerWidth + "px";
+          canvasEl.style.height = window.innerHeight + "px";
+          canvasEl.getContext("2d").scale(2, 2);
+        },
+        500
+      );
+      var render = anime({
+        duration: 1 / 0,
+        update: function () { ctx.clearRect(0, 0, canvasEl.width, canvasEl.height) }
+      });
+      document.addEventListener(
+        tap,
+        function (e) {
+          if ("sidebar" !== e.target.id && "toggle-sidebar" !== e.target.id && "A" !== e.target.nodeName && "IMG" !== e.target.nodeName) {
+            render.play();
+            updateCoords(e);
+            animateParticules(pointerX, pointerY);
+          }
+        },
+        !1
+      );
+      setCanvasSize();
+      window.addEventListener("resize", setCanvasSize, !1);
+    }
+  </script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" "Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/LyonsHwang/lyonshwang.github.io">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post " href="/archives/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%91%E7%8B%84%E5%88%A9%E5%85%8B%E9%9B%B7%E5%8D%B7%E7%A7%AF/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post " href="/archives/%E3%80%90%E8%AE%B0%E5%BD%95%E3%80%91Google%E6%8B%92%E4%BF%A1/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top " href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post " href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://lyons.press/archives/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%91%E7%BA%BF%E6%80%A7%E6%97%B6%E4%B8%8D%E5%8F%98%E7%B3%BB%E7%BB%9F/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://lyons.press/archives/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%91%E7%BA%BF%E6%80%A7%E6%97%B6%E4%B8%8D%E5%8F%98%E7%B3%BB%E7%BB%9F/&text=【数学】线性时不变系统"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://lyons.press/archives/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%91%E7%BA%BF%E6%80%A7%E6%97%B6%E4%B8%8D%E5%8F%98%E7%B3%BB%E7%BB%9F/&title=【数学】线性时不变系统"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://lyons.press/archives/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%91%E7%BA%BF%E6%80%A7%E6%97%B6%E4%B8%8D%E5%8F%98%E7%B3%BB%E7%BB%9F/&is_video=false&description=【数学】线性时不变系统"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=【数学】线性时不变系统&body=Check out this article: http://lyons.press/archives/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%91%E7%BA%BF%E6%80%A7%E6%97%B6%E4%B8%8D%E5%8F%98%E7%B3%BB%E7%BB%9F/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://lyons.press/archives/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%91%E7%BA%BF%E6%80%A7%E6%97%B6%E4%B8%8D%E5%8F%98%E7%B3%BB%E7%BB%9F/&title=【数学】线性时不变系统"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://lyons.press/archives/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%91%E7%BA%BF%E6%80%A7%E6%97%B6%E4%B8%8D%E5%8F%98%E7%B3%BB%E7%BB%9F/&title=【数学】线性时不变系统"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://lyons.press/archives/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%91%E7%BA%BF%E6%80%A7%E6%97%B6%E4%B8%8D%E5%8F%98%E7%B3%BB%E7%BB%9F/&title=【数学】线性时不变系统"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://lyons.press/archives/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%91%E7%BA%BF%E6%80%A7%E6%97%B6%E4%B8%8D%E5%8F%98%E7%B3%BB%E7%BB%9F/&title=【数学】线性时不变系统"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://lyons.press/archives/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%91%E7%BA%BF%E6%80%A7%E6%97%B6%E4%B8%8D%E5%8F%98%E7%B3%BB%E7%BB%9F/&name=【数学】线性时不变系统&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://lyons.press/archives/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%91%E7%BA%BF%E6%80%A7%E6%97%B6%E4%B8%8D%E5%8F%98%E7%B3%BB%E7%BB%9F/&t=【数学】线性时不变系统"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93%E8%AE%BA"><span class="toc-number">1.</span> <span class="toc-text">结论</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A6%BB%E6%95%A3%E6%97%B6%E9%97%B4"><span class="toc-number">1.1.</span> <span class="toc-text">离散时间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9E%E7%BB%AD%E6%97%B6%E9%97%B4"><span class="toc-number">1.2.</span> <span class="toc-text">连续时间</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%A7%E8%B4%A8"><span class="toc-number">2.</span> <span class="toc-text">性质</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%A4%E6%8D%A2%E5%BE%8B"><span class="toc-number">2.1.</span> <span class="toc-text">交换律</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E9%85%8D%E5%BE%8B"><span class="toc-number">2.2.</span> <span class="toc-text">分配律</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%93%E5%90%88%E5%BE%8B"><span class="toc-number">2.3.</span> <span class="toc-text">结合律</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">3.</span> <span class="toc-text">参考</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        【数学】线性时不变系统
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Lyons Hwang</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2021-06-04T17:53:27.000Z" itemprop="datePublished">2021-06-05</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/%E4%BF%A1%E5%8F%B7%E4%B8%8E%E7%B3%BB%E7%BB%9F/" rel="tag">信号与系统</a>, <a class="tag-link-link" href="/tags/%E5%8D%B7%E7%A7%AF/" rel="tag">卷积</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>设$x$为输入信号, $h$为单位冲激响应, $y$为输出信号.</p>
+<h3 id="离散时间"><a href="#离散时间" class="headerlink" title="离散时间"></a>离散时间</h3><script type="math/tex; mode=display">
+\begin{equation}
+\begin{split}
+y[n]
+&=x[n]*h[n]\\
+&=\sum_{k=-\infty}^{+\infty}x[k]h[n-k].
+\end{split}
+\end{equation}</script><h3 id="连续时间"><a href="#连续时间" class="headerlink" title="连续时间"></a>连续时间</h3><script type="math/tex; mode=display">
+\begin{equation}
+\begin{split}
+y(t)
+&=x(t)*h(t)\\
+&=\int_{-\infty}^{+\infty}x(\tau)h(t-\tau)\mathrm{d}\tau.
+\end{split}
+\end{equation}</script><h2 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h2><h3 id="交换律"><a href="#交换律" class="headerlink" title="交换律"></a>交换律</h3><script type="math/tex; mode=display">
+x[n]*h[n]=h[n]*x[n],\\
+x(t)*h(t)=h(t)*x(t).</script><h3 id="分配律"><a href="#分配律" class="headerlink" title="分配律"></a>分配律</h3><script type="math/tex; mode=display">
+\begin{alignat}{2}
+x[n]*(h_1[n]+h_2[n])&=x[n]*h_1[n]+x[n]*h_2[n],\\
+x(t)*(h_1(t)+h_2(t))&=x(t)*h_1(t)+x(t)*h_2(t).
+\end{alignat}</script><h3 id="结合律"><a href="#结合律" class="headerlink" title="结合律"></a>结合律</h3><script type="math/tex; mode=display">
+\begin{alignat}{2}
+x[n]*(h_1[n]*h_2[n])&=(x[n]*h_1[n])*h_2[n]\\
+x(t)*(h_1(t)*h_2(t))&=(x(t)*h_1(t))*h_2(t)
+\end{alignat}</script><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://book.douban.com/subject/21359219/">教材</a></li>
+</ul>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/LyonsHwang/lyonshwang.github.io">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93%E8%AE%BA"><span class="toc-number">1.</span> <span class="toc-text">结论</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A6%BB%E6%95%A3%E6%97%B6%E9%97%B4"><span class="toc-number">1.1.</span> <span class="toc-text">离散时间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9E%E7%BB%AD%E6%97%B6%E9%97%B4"><span class="toc-number">1.2.</span> <span class="toc-text">连续时间</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%A7%E8%B4%A8"><span class="toc-number">2.</span> <span class="toc-text">性质</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%A4%E6%8D%A2%E5%BE%8B"><span class="toc-number">2.1.</span> <span class="toc-text">交换律</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E9%85%8D%E5%BE%8B"><span class="toc-number">2.2.</span> <span class="toc-text">分配律</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%93%E5%90%88%E5%BE%8B"><span class="toc-number">2.3.</span> <span class="toc-text">结合律</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">3.</span> <span class="toc-text">参考</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://lyons.press/archives/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%91%E7%BA%BF%E6%80%A7%E6%97%B6%E4%B8%8D%E5%8F%98%E7%B3%BB%E7%BB%9F/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://lyons.press/archives/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%91%E7%BA%BF%E6%80%A7%E6%97%B6%E4%B8%8D%E5%8F%98%E7%B3%BB%E7%BB%9F/&text=【数学】线性时不变系统"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://lyons.press/archives/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%91%E7%BA%BF%E6%80%A7%E6%97%B6%E4%B8%8D%E5%8F%98%E7%B3%BB%E7%BB%9F/&title=【数学】线性时不变系统"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://lyons.press/archives/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%91%E7%BA%BF%E6%80%A7%E6%97%B6%E4%B8%8D%E5%8F%98%E7%B3%BB%E7%BB%9F/&is_video=false&description=【数学】线性时不变系统"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=【数学】线性时不变系统&body=Check out this article: http://lyons.press/archives/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%91%E7%BA%BF%E6%80%A7%E6%97%B6%E4%B8%8D%E5%8F%98%E7%B3%BB%E7%BB%9F/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://lyons.press/archives/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%91%E7%BA%BF%E6%80%A7%E6%97%B6%E4%B8%8D%E5%8F%98%E7%B3%BB%E7%BB%9F/&title=【数学】线性时不变系统"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://lyons.press/archives/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%91%E7%BA%BF%E6%80%A7%E6%97%B6%E4%B8%8D%E5%8F%98%E7%B3%BB%E7%BB%9F/&title=【数学】线性时不变系统"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://lyons.press/archives/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%91%E7%BA%BF%E6%80%A7%E6%97%B6%E4%B8%8D%E5%8F%98%E7%B3%BB%E7%BB%9F/&title=【数学】线性时不变系统"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://lyons.press/archives/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%91%E7%BA%BF%E6%80%A7%E6%97%B6%E4%B8%8D%E5%8F%98%E7%B3%BB%E7%BB%9F/&title=【数学】线性时不变系统"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://lyons.press/archives/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%91%E7%BA%BF%E6%80%A7%E6%97%B6%E4%B8%8D%E5%8F%98%E7%B3%BB%E7%BB%9F/&name=【数学】线性时不变系统&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://lyons.press/archives/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%91%E7%BA%BF%E6%80%A7%E6%97%B6%E4%B8%8D%E5%8F%98%E7%B3%BB%E7%BB%9F/&t=【数学】线性时不变系统"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2021
+    Lyons Hwang
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/LyonsHwang/lyonshwang.github.io">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>
