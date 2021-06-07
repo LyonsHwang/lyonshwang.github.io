@@ -6,17 +6,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="结论 \begin{alignat}{1} f(m)&amp;&#x3D;&amp;\sum_{k&#x3D;0}^{n-1}\omega_n^{mk}&amp;g(k),\\ g(m)&amp;&#x3D;\frac 1n &amp;\sum_{k&#x3D;0}^{n-1}\omega_n^{-mk}&amp;f(k). \end{alignat}推导由:  \begin{equation} \begin{split} [m&#x3D;0] &amp;&#x3D;\frac 1n\sum_{k&#x3D;0}^{n-">
+    <meta name="description" content="二维连续傅里叶级数假设:  f(x,y)&#x3D;f(x+T_1,y+T_2),基波频率为$\omega_1&#x3D;2\pi&#x2F;T_1,w_2,\omega_2&#x3D;2\pi&#x2F;T_2$. 傅里叶级数为:  f(x,y)&#x3D;\sum_{n&#x3D;-\infty}^{+\infty}\sum_{m&#x3D;-\infty}^{+\infty} a_{n,m}\mathbb{e}^{\mathbb{j}(nx\omega_1+my\ome">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【数学】离散傅里叶变换">
-<meta property="og:url" content="http://lyons.press/archives/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%91%E7%A6%BB%E6%95%A3%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2/index.html">
+<meta property="og:title" content="【数学】二维连续傅里叶变换">
+<meta property="og:url" content="http://lyons.press/archives/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%91%E4%BA%8C%E7%BB%B4%E8%BF%9E%E7%BB%AD%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2/index.html">
 <meta property="og:site_name" content="Lyons Press">
-<meta property="og:description" content="结论 \begin{alignat}{1} f(m)&amp;&#x3D;&amp;\sum_{k&#x3D;0}^{n-1}\omega_n^{mk}&amp;g(k),\\ g(m)&amp;&#x3D;\frac 1n &amp;\sum_{k&#x3D;0}^{n-1}\omega_n^{-mk}&amp;f(k). \end{alignat}推导由:  \begin{equation} \begin{split} [m&#x3D;0] &amp;&#x3D;\frac 1n\sum_{k&#x3D;0}^{n-">
+<meta property="og:description" content="二维连续傅里叶级数假设:  f(x,y)&#x3D;f(x+T_1,y+T_2),基波频率为$\omega_1&#x3D;2\pi&#x2F;T_1,w_2,\omega_2&#x3D;2\pi&#x2F;T_2$. 傅里叶级数为:  f(x,y)&#x3D;\sum_{n&#x3D;-\infty}^{+\infty}\sum_{m&#x3D;-\infty}^{+\infty} a_{n,m}\mathbb{e}^{\mathbb{j}(nx\omega_1+my\ome">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-05-30T08:35:31.000Z">
-<meta property="article:modified_time" content="2021-06-07T05:45:49.457Z">
+<meta property="article:published_time" content="2021-06-07T07:24:46.000Z">
+<meta property="article:modified_time" content="2021-06-07T08:24:29.183Z">
 <meta property="article:author" content="Lyons Hwang">
-<meta property="article:tag" content="反演">
+<meta property="article:tag" content="数字图像处理">
+<meta property="article:tag" content="信号与系统">
 <meta name="twitter:card" content="summary">
     
     
@@ -37,7 +38,7 @@
       
     
     <!-- title -->
-    <title>【数学】离散傅里叶变换</title>
+    <title>【数学】二维连续傅里叶变换</title>
     <!-- styles -->
     
 <link rel="stylesheet" href="/css/style.css">
@@ -211,10 +212,10 @@
     <span id="actions">
       <ul>
         
-        <li><a class="icon" aria-label="Previous post " href="/archives/%E3%80%90%E6%8A%80%E5%B7%A7%E3%80%91%E6%B2%83%E5%B0%94%E4%BB%80%E5%8F%98%E6%8D%A2/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Previous post " href="/archives/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%91%E4%BA%8C%E7%BB%B4%E7%A6%BB%E6%95%A3%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
         
-        <li><a class="icon" aria-label="Next post " href="/archives/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%91%E8%8E%AB%E6%AF%94%E4%B9%8C%E6%96%AF%E5%8F%8D%E6%BC%94/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Next post " href="/archives/%E3%80%90%E8%AE%B0%E5%BD%95%E3%80%91%E4%BE%BF%E6%9D%A1/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
         
         <li><a class="icon" aria-label="Back to top " href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
         <li><a class="icon" aria-label="Share post " href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
@@ -227,22 +228,22 @@
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://lyons.press/archives/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%91%E7%A6%BB%E6%95%A3%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://lyons.press/archives/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%91%E7%A6%BB%E6%95%A3%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2/&text=【数学】离散傅里叶变换"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://lyons.press/archives/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%91%E7%A6%BB%E6%95%A3%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2/&title=【数学】离散傅里叶变换"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://lyons.press/archives/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%91%E7%A6%BB%E6%95%A3%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2/&is_video=false&description=【数学】离散傅里叶变换"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=【数学】离散傅里叶变换&body=Check out this article: http://lyons.press/archives/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%91%E7%A6%BB%E6%95%A3%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://lyons.press/archives/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%91%E7%A6%BB%E6%95%A3%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2/&title=【数学】离散傅里叶变换"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://lyons.press/archives/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%91%E7%A6%BB%E6%95%A3%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2/&title=【数学】离散傅里叶变换"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://lyons.press/archives/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%91%E7%A6%BB%E6%95%A3%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2/&title=【数学】离散傅里叶变换"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://lyons.press/archives/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%91%E7%A6%BB%E6%95%A3%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2/&title=【数学】离散傅里叶变换"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://lyons.press/archives/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%91%E7%A6%BB%E6%95%A3%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2/&name=【数学】离散傅里叶变换&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://lyons.press/archives/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%91%E7%A6%BB%E6%95%A3%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2/&t=【数学】离散傅里叶变换"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://lyons.press/archives/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%91%E4%BA%8C%E7%BB%B4%E8%BF%9E%E7%BB%AD%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://lyons.press/archives/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%91%E4%BA%8C%E7%BB%B4%E8%BF%9E%E7%BB%AD%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2/&text=【数学】二维连续傅里叶变换"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://lyons.press/archives/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%91%E4%BA%8C%E7%BB%B4%E8%BF%9E%E7%BB%AD%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2/&title=【数学】二维连续傅里叶变换"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://lyons.press/archives/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%91%E4%BA%8C%E7%BB%B4%E8%BF%9E%E7%BB%AD%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2/&is_video=false&description=【数学】二维连续傅里叶变换"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=【数学】二维连续傅里叶变换&body=Check out this article: http://lyons.press/archives/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%91%E4%BA%8C%E7%BB%B4%E8%BF%9E%E7%BB%AD%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://lyons.press/archives/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%91%E4%BA%8C%E7%BB%B4%E8%BF%9E%E7%BB%AD%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2/&title=【数学】二维连续傅里叶变换"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://lyons.press/archives/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%91%E4%BA%8C%E7%BB%B4%E8%BF%9E%E7%BB%AD%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2/&title=【数学】二维连续傅里叶变换"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://lyons.press/archives/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%91%E4%BA%8C%E7%BB%B4%E8%BF%9E%E7%BB%AD%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2/&title=【数学】二维连续傅里叶变换"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://lyons.press/archives/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%91%E4%BA%8C%E7%BB%B4%E8%BF%9E%E7%BB%AD%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2/&title=【数学】二维连续傅里叶变换"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://lyons.press/archives/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%91%E4%BA%8C%E7%BB%B4%E8%BF%9E%E7%BB%AD%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2/&name=【数学】二维连续傅里叶变换&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://lyons.press/archives/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%91%E4%BA%8C%E7%BB%B4%E8%BF%9E%E7%BB%AD%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2/&t=【数学】二维连续傅里叶变换"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93%E8%AE%BA"><span class="toc-number">1.</span> <span class="toc-text">结论</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A8%E5%AF%BC"><span class="toc-number">2.</span> <span class="toc-text">推导</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">3.</span> <span class="toc-text">参考</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E7%BB%B4%E8%BF%9E%E7%BB%AD%E5%82%85%E9%87%8C%E5%8F%B6%E7%BA%A7%E6%95%B0"><span class="toc-number">1.</span> <span class="toc-text">二维连续傅里叶级数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E7%BB%B4%E8%BF%9E%E7%BB%AD%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2"><span class="toc-number">2.</span> <span class="toc-text">二维连续傅里叶变换</span></a></li></ol>
     </div>
   </span>
 </div>
@@ -254,7 +255,7 @@
   <header>
     
     <h1 class="posttitle" itemprop="name headline">
-        【数学】离散傅里叶变换
+        【数学】二维连续傅里叶变换
     </h1>
 
 
@@ -266,7 +267,7 @@
       
     <div class="postdate">
       
-        <time datetime="2021-05-30T08:35:31.000Z" itemprop="datePublished">2021-05-30</time>
+        <time datetime="2021-06-07T07:24:46.000Z" itemprop="datePublished">2021-06-07</time>
         
       
     </div>
@@ -277,7 +278,7 @@
       
     <div class="article-tag">
         <i class="fas fa-tag"></i>
-        <a class="tag-link-link" href="/tags/%E5%8F%8D%E6%BC%94/" rel="tag">反演</a>
+        <a class="tag-link-link" href="/tags/%E4%BF%A1%E5%8F%B7%E4%B8%8E%E7%B3%BB%E7%BB%9F/" rel="tag">信号与系统</a>, <a class="tag-link-link" href="/tags/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" rel="tag">数字图像处理</a>
     </div>
 
 
@@ -286,39 +287,22 @@
   
 
   <div class="content" itemprop="articleBody">
-    <h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><script type="math/tex; mode=display">
+    <h2 id="二维连续傅里叶级数"><a href="#二维连续傅里叶级数" class="headerlink" title="二维连续傅里叶级数"></a>二维连续傅里叶级数</h2><p>假设:</p>
+<script type="math/tex; mode=display">
+f(x,y)=f(x+T_1,y+T_2),</script><p>基波频率为$\omega_1=2\pi/T_1,w_2,\omega_2=2\pi/T_2$.</p>
+<p>傅里叶级数为:</p>
+<script type="math/tex; mode=display">
+f(x,y)=\sum_{n=-\infty}^{+\infty}\sum_{m=-\infty}^{+\infty}
+a_{n,m}\mathbb{e}^{\mathbb{j}(nx\omega_1+my\omega_2)}.</script><p>傅里叶级数系数为:</p>
+<script type="math/tex; mode=display">
+a_{n,m}=
+{1\over{T_1T_2}}\int_{T_1}\int_{T_2}f(x,y)\mathbb{e}^{-\mathbb{j}(nx\omega_1+my\omega_2)}\mathbb{d}x\mathbb{d}y.</script><h2 id="二维连续傅里叶变换"><a href="#二维连续傅里叶变换" class="headerlink" title="二维连续傅里叶变换"></a>二维连续傅里叶变换</h2><script type="math/tex; mode=display">
 \begin{alignat}{1}
-f(m)&=&\sum_{k=0}^{n-1}\omega_n^{mk}&g(k),\\
-g(m)&=\frac 1n &\sum_{k=0}^{n-1}\omega_n^{-mk}&f(k).
-\end{alignat}</script><h2 id="推导"><a href="#推导" class="headerlink" title="推导"></a>推导</h2><p>由:</p>
-<script type="math/tex; mode=display">
-\begin{equation}
-\begin{split}
-[m=0]
-&=\frac 1n\sum_{k=0}^{n-1}\omega_n^{mk},
-\end{split}
-\end{equation}</script><p>知:</p>
-<script type="math/tex; mode=display">
-\begin{equation}
-\begin{split}
-[m=l]
-&=[l-m=0]\\
-&=\frac 1n\sum_{k=0}^{n-1}\omega_n^{(l-m)k},
-\end{split}
-\end{equation}</script><p>故:</p>
-<script type="math/tex; mode=display">
-\begin{equation}
-\begin{split}
-g(m)
-&=\sum_{l=0}^{n-1}[m=l]g(l)\\
-&=\sum_{l=0}^{n-1}\left[\frac 1n\sum_{k=0}^{n-1}\omega_n^{(l-m)k}\right]g(l)\\
-&=\frac 1n\sum_{k=0}^{n-1}\omega_n^{-mk}\sum_{l=0}^{n-1}\omega_n^{kl}g(l)\\
-&=\frac 1n\sum_{k=0}^{n-1}\omega_n^{-mk}f(k).
-\end{split}
-\end{equation}</script><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://oi-wiki.org/math/poly/fft/">基础</a></li>
-</ul>
-
+&F(u,v)=
+&\int_{-\infty}^{+\infty}\int_{-\infty}^{+\infty}f(x,y)\mathbb{e}^{-\mathbb{j}(ux+vy)}\mathbb{d}x\mathbb{d}y\\
+&f(x,y)={1\over 4\pi^2}
+&\int_{-\infty}^{+\infty}\int_{-\infty}^{+\infty}F(u,v)\mathbb{e}^{-\mathbb{j}(ux+vy)}\mathbb{d}u\mathbb{d}v\\
+\end{alignat}</script>
   </div>
 </article>
 
@@ -343,22 +327,22 @@ g(m)
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93%E8%AE%BA"><span class="toc-number">1.</span> <span class="toc-text">结论</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A8%E5%AF%BC"><span class="toc-number">2.</span> <span class="toc-text">推导</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">3.</span> <span class="toc-text">参考</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E7%BB%B4%E8%BF%9E%E7%BB%AD%E5%82%85%E9%87%8C%E5%8F%B6%E7%BA%A7%E6%95%B0"><span class="toc-number">1.</span> <span class="toc-text">二维连续傅里叶级数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E7%BB%B4%E8%BF%9E%E7%BB%AD%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2"><span class="toc-number">2.</span> <span class="toc-text">二维连续傅里叶变换</span></a></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://lyons.press/archives/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%91%E7%A6%BB%E6%95%A3%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://lyons.press/archives/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%91%E7%A6%BB%E6%95%A3%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2/&text=【数学】离散傅里叶变换"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://lyons.press/archives/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%91%E7%A6%BB%E6%95%A3%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2/&title=【数学】离散傅里叶变换"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://lyons.press/archives/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%91%E7%A6%BB%E6%95%A3%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2/&is_video=false&description=【数学】离散傅里叶变换"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=【数学】离散傅里叶变换&body=Check out this article: http://lyons.press/archives/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%91%E7%A6%BB%E6%95%A3%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://lyons.press/archives/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%91%E7%A6%BB%E6%95%A3%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2/&title=【数学】离散傅里叶变换"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://lyons.press/archives/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%91%E7%A6%BB%E6%95%A3%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2/&title=【数学】离散傅里叶变换"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://lyons.press/archives/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%91%E7%A6%BB%E6%95%A3%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2/&title=【数学】离散傅里叶变换"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://lyons.press/archives/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%91%E7%A6%BB%E6%95%A3%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2/&title=【数学】离散傅里叶变换"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://lyons.press/archives/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%91%E7%A6%BB%E6%95%A3%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2/&name=【数学】离散傅里叶变换&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://lyons.press/archives/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%91%E7%A6%BB%E6%95%A3%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2/&t=【数学】离散傅里叶变换"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://lyons.press/archives/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%91%E4%BA%8C%E7%BB%B4%E8%BF%9E%E7%BB%AD%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://lyons.press/archives/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%91%E4%BA%8C%E7%BB%B4%E8%BF%9E%E7%BB%AD%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2/&text=【数学】二维连续傅里叶变换"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://lyons.press/archives/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%91%E4%BA%8C%E7%BB%B4%E8%BF%9E%E7%BB%AD%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2/&title=【数学】二维连续傅里叶变换"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://lyons.press/archives/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%91%E4%BA%8C%E7%BB%B4%E8%BF%9E%E7%BB%AD%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2/&is_video=false&description=【数学】二维连续傅里叶变换"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=【数学】二维连续傅里叶变换&body=Check out this article: http://lyons.press/archives/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%91%E4%BA%8C%E7%BB%B4%E8%BF%9E%E7%BB%AD%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://lyons.press/archives/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%91%E4%BA%8C%E7%BB%B4%E8%BF%9E%E7%BB%AD%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2/&title=【数学】二维连续傅里叶变换"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://lyons.press/archives/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%91%E4%BA%8C%E7%BB%B4%E8%BF%9E%E7%BB%AD%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2/&title=【数学】二维连续傅里叶变换"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://lyons.press/archives/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%91%E4%BA%8C%E7%BB%B4%E8%BF%9E%E7%BB%AD%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2/&title=【数学】二维连续傅里叶变换"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://lyons.press/archives/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%91%E4%BA%8C%E7%BB%B4%E8%BF%9E%E7%BB%AD%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2/&title=【数学】二维连续傅里叶变换"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://lyons.press/archives/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%91%E4%BA%8C%E7%BB%B4%E8%BF%9E%E7%BB%AD%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2/&name=【数学】二维连续傅里叶变换&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://lyons.press/archives/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%91%E4%BA%8C%E7%BB%B4%E8%BF%9E%E7%BB%AD%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2/&t=【数学】二维连续傅里叶变换"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
