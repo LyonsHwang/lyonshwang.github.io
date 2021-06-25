@@ -8,13 +8,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
     <meta name="description" content="问题博客不能部署到GitHub上. 措施措施一使用SSH而不是HTTPS建立连接: 1234# HTTPShttps:&#x2F;&#x2F;github.com&#x2F;LyonsHwang&#x2F;lyonshwang.github.io.git# SSHgit@github.com:LyonsHwang&#x2F;lyonshwang.github.io.git 措施二终端使用Socks5代理: 1234# enable proxyex">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【维护】防火长城">
-<meta property="og:url" content="http://lyons.press/archives/%E3%80%90%E7%BB%B4%E6%8A%A4%E3%80%91%E9%98%B2%E7%81%AB%E9%95%BF%E5%9F%8E/index.html">
+<meta property="og:title" content="【维护】用终端访问GitHub">
+<meta property="og:url" content="http://lyons.press/archives/%E3%80%90%E7%BB%B4%E6%8A%A4%E3%80%91%E7%94%A8%E7%BB%88%E7%AB%AF%E8%AE%BF%E9%97%AEGitHub/index.html">
 <meta property="og:site_name" content="Lyons Press">
 <meta property="og:description" content="问题博客不能部署到GitHub上. 措施措施一使用SSH而不是HTTPS建立连接: 1234# HTTPShttps:&#x2F;&#x2F;github.com&#x2F;LyonsHwang&#x2F;lyonshwang.github.io.git# SSHgit@github.com:LyonsHwang&#x2F;lyonshwang.github.io.git 措施二终端使用Socks5代理: 1234# enable proxyex">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-06-05T18:23:03.000Z">
-<meta property="article:modified_time" content="2021-06-06T03:04:46.643Z">
+<meta property="article:modified_time" content="2021-06-18T13:31:33.517Z">
 <meta property="article:author" content="Lyons Hwang">
 <meta property="article:tag" content="计算机网络">
 <meta name="twitter:card" content="summary">
@@ -37,7 +37,7 @@
       
     
     <!-- title -->
-    <title>【维护】防火长城</title>
+    <title>【维护】用终端访问GitHub</title>
     <!-- styles -->
     
 <link rel="stylesheet" href="/css/style.css">
@@ -227,17 +227,17 @@
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://lyons.press/archives/%E3%80%90%E7%BB%B4%E6%8A%A4%E3%80%91%E9%98%B2%E7%81%AB%E9%95%BF%E5%9F%8E/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://lyons.press/archives/%E3%80%90%E7%BB%B4%E6%8A%A4%E3%80%91%E9%98%B2%E7%81%AB%E9%95%BF%E5%9F%8E/&text=【维护】防火长城"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://lyons.press/archives/%E3%80%90%E7%BB%B4%E6%8A%A4%E3%80%91%E9%98%B2%E7%81%AB%E9%95%BF%E5%9F%8E/&title=【维护】防火长城"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://lyons.press/archives/%E3%80%90%E7%BB%B4%E6%8A%A4%E3%80%91%E9%98%B2%E7%81%AB%E9%95%BF%E5%9F%8E/&is_video=false&description=【维护】防火长城"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=【维护】防火长城&body=Check out this article: http://lyons.press/archives/%E3%80%90%E7%BB%B4%E6%8A%A4%E3%80%91%E9%98%B2%E7%81%AB%E9%95%BF%E5%9F%8E/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://lyons.press/archives/%E3%80%90%E7%BB%B4%E6%8A%A4%E3%80%91%E9%98%B2%E7%81%AB%E9%95%BF%E5%9F%8E/&title=【维护】防火长城"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://lyons.press/archives/%E3%80%90%E7%BB%B4%E6%8A%A4%E3%80%91%E9%98%B2%E7%81%AB%E9%95%BF%E5%9F%8E/&title=【维护】防火长城"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://lyons.press/archives/%E3%80%90%E7%BB%B4%E6%8A%A4%E3%80%91%E9%98%B2%E7%81%AB%E9%95%BF%E5%9F%8E/&title=【维护】防火长城"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://lyons.press/archives/%E3%80%90%E7%BB%B4%E6%8A%A4%E3%80%91%E9%98%B2%E7%81%AB%E9%95%BF%E5%9F%8E/&title=【维护】防火长城"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://lyons.press/archives/%E3%80%90%E7%BB%B4%E6%8A%A4%E3%80%91%E9%98%B2%E7%81%AB%E9%95%BF%E5%9F%8E/&name=【维护】防火长城&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://lyons.press/archives/%E3%80%90%E7%BB%B4%E6%8A%A4%E3%80%91%E9%98%B2%E7%81%AB%E9%95%BF%E5%9F%8E/&t=【维护】防火长城"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://lyons.press/archives/%E3%80%90%E7%BB%B4%E6%8A%A4%E3%80%91%E7%94%A8%E7%BB%88%E7%AB%AF%E8%AE%BF%E9%97%AEGitHub/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://lyons.press/archives/%E3%80%90%E7%BB%B4%E6%8A%A4%E3%80%91%E7%94%A8%E7%BB%88%E7%AB%AF%E8%AE%BF%E9%97%AEGitHub/&text=【维护】用终端访问GitHub"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://lyons.press/archives/%E3%80%90%E7%BB%B4%E6%8A%A4%E3%80%91%E7%94%A8%E7%BB%88%E7%AB%AF%E8%AE%BF%E9%97%AEGitHub/&title=【维护】用终端访问GitHub"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://lyons.press/archives/%E3%80%90%E7%BB%B4%E6%8A%A4%E3%80%91%E7%94%A8%E7%BB%88%E7%AB%AF%E8%AE%BF%E9%97%AEGitHub/&is_video=false&description=【维护】用终端访问GitHub"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=【维护】用终端访问GitHub&body=Check out this article: http://lyons.press/archives/%E3%80%90%E7%BB%B4%E6%8A%A4%E3%80%91%E7%94%A8%E7%BB%88%E7%AB%AF%E8%AE%BF%E9%97%AEGitHub/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://lyons.press/archives/%E3%80%90%E7%BB%B4%E6%8A%A4%E3%80%91%E7%94%A8%E7%BB%88%E7%AB%AF%E8%AE%BF%E9%97%AEGitHub/&title=【维护】用终端访问GitHub"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://lyons.press/archives/%E3%80%90%E7%BB%B4%E6%8A%A4%E3%80%91%E7%94%A8%E7%BB%88%E7%AB%AF%E8%AE%BF%E9%97%AEGitHub/&title=【维护】用终端访问GitHub"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://lyons.press/archives/%E3%80%90%E7%BB%B4%E6%8A%A4%E3%80%91%E7%94%A8%E7%BB%88%E7%AB%AF%E8%AE%BF%E9%97%AEGitHub/&title=【维护】用终端访问GitHub"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://lyons.press/archives/%E3%80%90%E7%BB%B4%E6%8A%A4%E3%80%91%E7%94%A8%E7%BB%88%E7%AB%AF%E8%AE%BF%E9%97%AEGitHub/&title=【维护】用终端访问GitHub"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://lyons.press/archives/%E3%80%90%E7%BB%B4%E6%8A%A4%E3%80%91%E7%94%A8%E7%BB%88%E7%AB%AF%E8%AE%BF%E9%97%AEGitHub/&name=【维护】用终端访问GitHub&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://lyons.press/archives/%E3%80%90%E7%BB%B4%E6%8A%A4%E3%80%91%E7%94%A8%E7%BB%88%E7%AB%AF%E8%AE%BF%E9%97%AEGitHub/&t=【维护】用终端访问GitHub"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -254,7 +254,7 @@
   <header>
     
     <h1 class="posttitle" itemprop="name headline">
-        【维护】防火长城
+        【维护】用终端访问GitHub
     </h1>
 
 
@@ -326,17 +326,17 @@
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://lyons.press/archives/%E3%80%90%E7%BB%B4%E6%8A%A4%E3%80%91%E9%98%B2%E7%81%AB%E9%95%BF%E5%9F%8E/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://lyons.press/archives/%E3%80%90%E7%BB%B4%E6%8A%A4%E3%80%91%E9%98%B2%E7%81%AB%E9%95%BF%E5%9F%8E/&text=【维护】防火长城"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://lyons.press/archives/%E3%80%90%E7%BB%B4%E6%8A%A4%E3%80%91%E9%98%B2%E7%81%AB%E9%95%BF%E5%9F%8E/&title=【维护】防火长城"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://lyons.press/archives/%E3%80%90%E7%BB%B4%E6%8A%A4%E3%80%91%E9%98%B2%E7%81%AB%E9%95%BF%E5%9F%8E/&is_video=false&description=【维护】防火长城"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=【维护】防火长城&body=Check out this article: http://lyons.press/archives/%E3%80%90%E7%BB%B4%E6%8A%A4%E3%80%91%E9%98%B2%E7%81%AB%E9%95%BF%E5%9F%8E/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://lyons.press/archives/%E3%80%90%E7%BB%B4%E6%8A%A4%E3%80%91%E9%98%B2%E7%81%AB%E9%95%BF%E5%9F%8E/&title=【维护】防火长城"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://lyons.press/archives/%E3%80%90%E7%BB%B4%E6%8A%A4%E3%80%91%E9%98%B2%E7%81%AB%E9%95%BF%E5%9F%8E/&title=【维护】防火长城"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://lyons.press/archives/%E3%80%90%E7%BB%B4%E6%8A%A4%E3%80%91%E9%98%B2%E7%81%AB%E9%95%BF%E5%9F%8E/&title=【维护】防火长城"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://lyons.press/archives/%E3%80%90%E7%BB%B4%E6%8A%A4%E3%80%91%E9%98%B2%E7%81%AB%E9%95%BF%E5%9F%8E/&title=【维护】防火长城"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://lyons.press/archives/%E3%80%90%E7%BB%B4%E6%8A%A4%E3%80%91%E9%98%B2%E7%81%AB%E9%95%BF%E5%9F%8E/&name=【维护】防火长城&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://lyons.press/archives/%E3%80%90%E7%BB%B4%E6%8A%A4%E3%80%91%E9%98%B2%E7%81%AB%E9%95%BF%E5%9F%8E/&t=【维护】防火长城"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://lyons.press/archives/%E3%80%90%E7%BB%B4%E6%8A%A4%E3%80%91%E7%94%A8%E7%BB%88%E7%AB%AF%E8%AE%BF%E9%97%AEGitHub/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://lyons.press/archives/%E3%80%90%E7%BB%B4%E6%8A%A4%E3%80%91%E7%94%A8%E7%BB%88%E7%AB%AF%E8%AE%BF%E9%97%AEGitHub/&text=【维护】用终端访问GitHub"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://lyons.press/archives/%E3%80%90%E7%BB%B4%E6%8A%A4%E3%80%91%E7%94%A8%E7%BB%88%E7%AB%AF%E8%AE%BF%E9%97%AEGitHub/&title=【维护】用终端访问GitHub"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://lyons.press/archives/%E3%80%90%E7%BB%B4%E6%8A%A4%E3%80%91%E7%94%A8%E7%BB%88%E7%AB%AF%E8%AE%BF%E9%97%AEGitHub/&is_video=false&description=【维护】用终端访问GitHub"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=【维护】用终端访问GitHub&body=Check out this article: http://lyons.press/archives/%E3%80%90%E7%BB%B4%E6%8A%A4%E3%80%91%E7%94%A8%E7%BB%88%E7%AB%AF%E8%AE%BF%E9%97%AEGitHub/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://lyons.press/archives/%E3%80%90%E7%BB%B4%E6%8A%A4%E3%80%91%E7%94%A8%E7%BB%88%E7%AB%AF%E8%AE%BF%E9%97%AEGitHub/&title=【维护】用终端访问GitHub"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://lyons.press/archives/%E3%80%90%E7%BB%B4%E6%8A%A4%E3%80%91%E7%94%A8%E7%BB%88%E7%AB%AF%E8%AE%BF%E9%97%AEGitHub/&title=【维护】用终端访问GitHub"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://lyons.press/archives/%E3%80%90%E7%BB%B4%E6%8A%A4%E3%80%91%E7%94%A8%E7%BB%88%E7%AB%AF%E8%AE%BF%E9%97%AEGitHub/&title=【维护】用终端访问GitHub"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://lyons.press/archives/%E3%80%90%E7%BB%B4%E6%8A%A4%E3%80%91%E7%94%A8%E7%BB%88%E7%AB%AF%E8%AE%BF%E9%97%AEGitHub/&title=【维护】用终端访问GitHub"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://lyons.press/archives/%E3%80%90%E7%BB%B4%E6%8A%A4%E3%80%91%E7%94%A8%E7%BB%88%E7%AB%AF%E8%AE%BF%E9%97%AEGitHub/&name=【维护】用终端访问GitHub&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://lyons.press/archives/%E3%80%90%E7%BB%B4%E6%8A%A4%E3%80%91%E7%94%A8%E7%BB%88%E7%AB%AF%E8%AE%BF%E9%97%AEGitHub/&t=【维护】用终端访问GitHub"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
