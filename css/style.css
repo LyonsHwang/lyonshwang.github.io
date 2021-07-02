@@ -1121,23 +1121,17 @@ article .content .video-container embed {
   height: 100%;
 }
 article .content blockquote {
-  margin: 1rem 10px;
-  padding: 0.5em 10px;
+  margin: 1rem 0px;
+  padding: 0.5em 15px;
   background: inherit;
   color: #bc8f8f;
   quotes: "\201C" "\201D" "\2018" "\2019";
   font-weight: bold;
+  border-left: solid 3px #a0522d;
+  background-color: #f5f5f5;
 }
 article .content blockquote p {
   margin: 0;
-}
-article .content blockquote:before {
-  margin-right: 0.25em;
-  color: #bc8f8f;
-  content: "\201C";
-  vertical-align: -0.4em;
-  font-size: 2em;
-  line-height: 0.1em;
 }
 article .content blockquote footer {
   margin: line-height 0;
