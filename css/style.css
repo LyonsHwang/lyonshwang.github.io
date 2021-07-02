@@ -335,7 +335,7 @@ body .h2 {
   display: block;
   margin-top: 2rem;
   margin-bottom: 0.5rem;
-  color: rgba(86,124,119,0.8);
+  color: #2e8b57;
   text-transform: none;
   letter-spacing: normal;
   font-weight: bold;
@@ -426,7 +426,7 @@ body table {
 body th {
   padding: 8px;
   border-bottom: 1px dashed #666;
-  color: rgba(86,124,119,0.8);
+  color: #2e8b57;
   font-weight: bold;
   font-size: 13px;
 }
@@ -1099,7 +1099,7 @@ article .content h2:before {
 }
 article .content h3 {
   font-family: Helvetica;
-  color: #556b2f;
+  color: rgba(86,124,119,0.8);
   text-decoration-line: none;
 }
 article .content h3:before {
@@ -1324,7 +1324,7 @@ article .content .caption {
   background-image: none;
 }
 .pagination a:hover:not(.active) {
-  color: rgba(86,124,119,0.8);
+  color: #2e8b57;
 }
 .search-input {
   padding: 4px 7px;
