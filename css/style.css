@@ -1097,6 +1097,17 @@ article .content h2:before {
   font-weight: bold;
   font-size: 1.2rem;
 }
+article .content h3 {
+  font-family: Helvetica;
+  color: #556b2f;
+  text-decoration-line: none;
+}
+article .content h3:before {
+  color: #600;
+  content: "-";
+  position: absolute;
+  left: -1rem;
+}
 article .content img,
 article .content video {
   display: block;
