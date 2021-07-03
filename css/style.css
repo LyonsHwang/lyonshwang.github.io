@@ -329,6 +329,10 @@ body .h1 {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
 }
+body h1.posttitle {
+  position: relative;
+  left: -1.75rem;
+}
 body h2,
 body .h2 {
   position: relative;
@@ -342,7 +346,7 @@ body .h2 {
   font-size: 1rem;
 }
 body h3 {
-  color: #666;
+  color: #2e8b57;
   text-decoration: underline;
   font-weight: bold;
   font-size: 0.9rem;
