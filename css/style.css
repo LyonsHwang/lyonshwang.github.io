@@ -1090,12 +1090,11 @@ article header .postdate {
 }
 article .content h2:before {
   position: absolute;
-  top: -4px;
   left: -1rem;
-  color: #b22222;
+  color: #030;
   content: "#";
   font-weight: bold;
-  font-size: 1.2rem;
+  font-size: 1rem;
 }
 article .content h3 {
   font-family: Helvetica;
@@ -1103,8 +1102,8 @@ article .content h3 {
   text-decoration-line: none;
 }
 article .content h3:before {
-  color: #600;
-  content: "-";
+  color: #363;
+  content: "☈";
   position: absolute;
   left: -1rem;
 }
