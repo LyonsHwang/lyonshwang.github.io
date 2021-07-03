@@ -6,15 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="结论形式一 \begin{align} f(n)&amp;&#x3D;\sum_{k&#x3D;0}^n(-1)^k{n\choose k}g(k),\\ g(n)&amp;&#x3D;\sum_{k&#x3D;0}^n(-1)^k{n\choose k}f(k). \end{align}形式二 \begin{align} f(n)&amp;&#x3D;\sum_{k&#x3D;0}^n{n\choose k}g(k),\\ g(n)&amp;&#x3D;\sum_{k&#x3D;0}^n(-1)^{n-k">
+    <meta name="description" content="结论形式一 \begin{align} f(n)&amp;&#x3D;\sum_{k&#x3D;0}^n(-1)^k{n\choose k}g(k),\\ g(n)&amp;&#x3D;\sum_{k&#x3D;0}^n(-1)^k{n\choose k}f(k). \end{align}          推导 由:  $$ \begin{align} [n&#x3D;0]&amp;&#x3D;\sum_{k&#x3D;0}^n(-1)^k{n\choose k},\\ \end{ali">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【数学】二项式反演">
 <meta property="og:url" content="http://lyons.press/archives/%E3%80%90%E6%95%B0%E5%AD%A6%E3%80%91%E4%BA%8C%E9%A1%B9%E5%BC%8F%E5%8F%8D%E6%BC%94/index.html">
 <meta property="og:site_name" content="Lyons Press">
-<meta property="og:description" content="结论形式一 \begin{align} f(n)&amp;&#x3D;\sum_{k&#x3D;0}^n(-1)^k{n\choose k}g(k),\\ g(n)&amp;&#x3D;\sum_{k&#x3D;0}^n(-1)^k{n\choose k}f(k). \end{align}形式二 \begin{align} f(n)&amp;&#x3D;\sum_{k&#x3D;0}^n{n\choose k}g(k),\\ g(n)&amp;&#x3D;\sum_{k&#x3D;0}^n(-1)^{n-k">
+<meta property="og:description" content="结论形式一 \begin{align} f(n)&amp;&#x3D;\sum_{k&#x3D;0}^n(-1)^k{n\choose k}g(k),\\ g(n)&amp;&#x3D;\sum_{k&#x3D;0}^n(-1)^k{n\choose k}f(k). \end{align}          推导 由:  $$ \begin{align} [n&#x3D;0]&amp;&#x3D;\sum_{k&#x3D;0}^n(-1)^k{n\choose k},\\ \end{ali">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-05-30T05:09:52.000Z">
-<meta property="article:modified_time" content="2021-05-30T06:48:02.885Z">
+<meta property="article:modified_time" content="2021-07-03T10:48:20.175Z">
 <meta property="article:author" content="Lyons Hwang">
 <meta property="article:tag" content="反演">
 <meta property="article:tag" content="组合数学">
@@ -243,7 +243,7 @@
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93%E8%AE%BA"><span class="toc-number">1.</span> <span class="toc-text">结论</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BD%A2%E5%BC%8F%E4%B8%80"><span class="toc-number">1.1.</span> <span class="toc-text">形式一</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BD%A2%E5%BC%8F%E4%BA%8C"><span class="toc-number">1.2.</span> <span class="toc-text">形式二</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BD%A2%E5%BC%8F%E4%B8%89"><span class="toc-number">1.3.</span> <span class="toc-text">形式三</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BD%A2%E5%BC%8F%E5%9B%9B"><span class="toc-number">1.4.</span> <span class="toc-text">形式四</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A8%E5%AF%BC"><span class="toc-number">2.</span> <span class="toc-text">推导</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BD%A2%E5%BC%8F%E4%B8%80-1"><span class="toc-number">2.1.</span> <span class="toc-text">形式一</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">3.</span> <span class="toc-text">参考</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93%E8%AE%BA"><span class="toc-number">1.</span> <span class="toc-text">结论</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BD%A2%E5%BC%8F%E4%B8%80"><span class="toc-number">1.1.</span> <span class="toc-text">形式一</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BD%A2%E5%BC%8F%E4%BA%8C"><span class="toc-number">1.2.</span> <span class="toc-text">形式二</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BD%A2%E5%BC%8F%E4%B8%89"><span class="toc-number">1.3.</span> <span class="toc-text">形式三</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BD%A2%E5%BC%8F%E5%9B%9B"><span class="toc-number">1.4.</span> <span class="toc-text">形式四</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">2.</span> <span class="toc-text">参考</span></a></li></ol>
     </div>
   </span>
 </div>
@@ -291,7 +291,49 @@
 \begin{align}
 f(n)&=\sum_{k=0}^n(-1)^k{n\choose k}g(k),\\
 g(n)&=\sum_{k=0}^n(-1)^k{n\choose k}f(k).
-\end{align}</script><h3 id="形式二"><a href="#形式二" class="headerlink" title="形式二"></a>形式二</h3><script type="math/tex; mode=display">
+\end{align}</script><div>
+    <details>
+    <summary>推导</summary>
+由:
+
+$$
+\begin{align}
+[n=0]&=\sum_{k=0}^n(-1)^k{n\choose k},\\
+\end{align}
+$$
+
+知:
+
+$$
+\begin{equation}
+\begin{split}
+[n=m]
+&=[n-m=0]{n\choose m}\\
+&=\sum_{k=0}^{n-m}(-1)^{k}{n-m\choose k}{n\choose m}\\
+&=\sum_{k=0}^{n-m}(-1)^{k}{n\choose m+k}{m+k\choose m}\\
+&=\sum_{k=m}^n(-1)^{k+m}{n\choose k}{k\choose m}\\
+&=\sum_{k=m}^n(-1)^k{n\choose k}(-1)^m{k\choose m}.
+\end{split}
+\end{equation}
+$$
+
+故:
+
+$$
+\begin{equation}
+\begin{split}
+g(n)
+&=\sum_{m=0}^n[n=m]g(m)\\
+&=\sum_{m=0}^n\left[\sum_{k=m}^n(-1)^k{n\choose k}(-1)^m{k\choose m}\right]g(m)\\
+&=\sum_{k=0}^n(-1)^k{n\choose k}\sum_{m=0}^k(-1)^m{k\choose m}g(m)\\
+&=\sum_{k=0}^n(-1)^k{n\choose k}f(k).
+\end{split}
+\end{equation}
+$$
+    </details>
+</div>
+
+<h3 id="形式二"><a href="#形式二" class="headerlink" title="形式二"></a>形式二</h3><script type="math/tex; mode=display">
 \begin{align}
 f(n)&=\sum_{k=0}^n{n\choose k}g(k),\\
 g(n)&=\sum_{k=0}^n(-1)^{n-k}{n\choose k}f(k).
@@ -303,32 +345,7 @@ g(n)&=\sum_{k=n}^N(-1)^k{k\choose n}f(k).
 \begin{align}
 f(n)&=\sum_{k=n}^N{k\choose n}g(k),\\
 g(n)&=\sum_{k=n}^N(-1)^{k-n}{k\choose n}f(k).
-\end{align}</script><h2 id="推导"><a href="#推导" class="headerlink" title="推导"></a>推导</h2><h3 id="形式一-1"><a href="#形式一-1" class="headerlink" title="形式一"></a>形式一</h3><p>由:</p>
-<script type="math/tex; mode=display">
-\begin{align}
-[n=0]&=\sum_{k=0}^n(-1)^k{n\choose k},\\
-\end{align}</script><p>知:</p>
-<script type="math/tex; mode=display">
-\begin{equation}
-\begin{split}
-[n=m]
-&=[n-m=0]{n\choose m}\\
-&=\sum_{k=0}^{n-m}(-1)^{k}{n-m\choose k}{n\choose m}\\
-&=\sum_{k=0}^{n-m}(-1)^{k}{n\choose m+k}{m+k\choose m}\\
-&=\sum_{k=m}^n(-1)^{k+m}{n\choose k}{k\choose m}\\
-&=\sum_{k=m}^n(-1)^k{n\choose k}(-1)^m{k\choose m}.
-\end{split}
-\end{equation}</script><p>故:</p>
-<script type="math/tex; mode=display">
-\begin{equation}
-\begin{split}
-g(n)
-&=\sum_{m=0}^n[n=m]g(m)\\
-&=\sum_{m=0}^n\left[\sum_{k=m}^n(-1)^k{n\choose k}(-1)^m{k\choose m}\right]g(m)\\
-&=\sum_{k=0}^n(-1)^k{n\choose k}\sum_{m=0}^k(-1)^m{k\choose m}g(m)\\
-&=\sum_{k=0}^n(-1)^k{n\choose k}f(k).
-\end{split}
-\end{equation}</script><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+\end{align}</script><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
 <li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/tacmon52818/p/12713152.html">入门</a></li>
 <li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/GDOI2018/p/14491894.html">进阶</a></li>
 </ul>
@@ -357,7 +374,7 @@ g(n)
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93%E8%AE%BA"><span class="toc-number">1.</span> <span class="toc-text">结论</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BD%A2%E5%BC%8F%E4%B8%80"><span class="toc-number">1.1.</span> <span class="toc-text">形式一</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BD%A2%E5%BC%8F%E4%BA%8C"><span class="toc-number">1.2.</span> <span class="toc-text">形式二</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BD%A2%E5%BC%8F%E4%B8%89"><span class="toc-number">1.3.</span> <span class="toc-text">形式三</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BD%A2%E5%BC%8F%E5%9B%9B"><span class="toc-number">1.4.</span> <span class="toc-text">形式四</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A8%E5%AF%BC"><span class="toc-number">2.</span> <span class="toc-text">推导</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BD%A2%E5%BC%8F%E4%B8%80-1"><span class="toc-number">2.1.</span> <span class="toc-text">形式一</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">3.</span> <span class="toc-text">参考</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93%E8%AE%BA"><span class="toc-number">1.</span> <span class="toc-text">结论</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BD%A2%E5%BC%8F%E4%B8%80"><span class="toc-number">1.1.</span> <span class="toc-text">形式一</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BD%A2%E5%BC%8F%E4%BA%8C"><span class="toc-number">1.2.</span> <span class="toc-text">形式二</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BD%A2%E5%BC%8F%E4%B8%89"><span class="toc-number">1.3.</span> <span class="toc-text">形式三</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BD%A2%E5%BC%8F%E5%9B%9B"><span class="toc-number">1.4.</span> <span class="toc-text">形式四</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">2.</span> <span class="toc-text">参考</span></a></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">
