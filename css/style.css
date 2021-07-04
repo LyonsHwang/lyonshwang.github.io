@@ -1117,12 +1117,10 @@ article .content details {
   color: #cd853f;
 }
 article .content details summary {
-  display: block;
   color: #daa520;
   font-weight: bold;
   position: relative;
   left: -1rem;
-  width: 665px;
   outline: none;
 }
 article .content details summary::-webkit-details-marker {
