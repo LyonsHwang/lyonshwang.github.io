@@ -499,14 +499,14 @@ body {
 .content a {
   color: #22272a;
   text-decoration: none;
-  background-image: linear-gradient(transparent, transparent 5px, #22272a 5px, #22272a);
+  background-image: linear-gradient(transparent, transparent 5.5px, #22272a 5.5px, #22272a);
   background-position: bottom;
   background-size: 100% 6px;
   background-repeat: repeat-x;
 }
 .content a:hover {
   color: #008080;
-  background-image: linear-gradient(transparent, transparent 5px, #008080 5px, #008080);
+  background-image: linear-gradient(transparent, transparent 5.5px, #008080 5.5px, #008080);
   background-position: bottom;
   background-size: 100% 6px;
   background-repeat: repeat-x;
@@ -1056,6 +1056,18 @@ body {
   color: #666;
   font-size: 14px;
 }
+.post-list a {
+  background-image: linear-gradient(transparent, transparent 19px, #f00 19px, #f00);
+  background-position: bottom;
+  background-size: 100% 6px;
+  background-repeat: repeat-x;
+}
+.post-list a:hover {
+  background-image: linear-gradient(transparent, transparent 19px, #f00 19px, #f00);
+  background-position: bottom;
+  background-size: 100% 6px;
+  background-repeat: repeat-x;
+}
 @media (min-width: 480px) {
   .post-list .post-item {
     display: flex;
@@ -1257,6 +1269,12 @@ article .content .caption {
   min-width: 100px;
   color: #666;
   font-size: 14px;
+}
+#archive .post-list .post-item a {
+  background-image: linear-gradient(transparent, transparent 19px, #f00 19px, #f00);
+  background-position: bottom;
+  background-size: 100% 6px;
+  background-repeat: repeat-x;
 }
 @media (min-width: 480px) {
   #archive .post-list .post-item {
