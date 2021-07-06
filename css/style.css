@@ -326,6 +326,7 @@ body .h1 {
   font-weight: 700;
   font-style: normal;
   font-size: 1.5em;
+  font-family: Helvetica;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
 }
@@ -344,15 +345,19 @@ body .h2 {
   text-transform: none;
   letter-spacing: normal;
   font-weight: bold;
-  font-size: 1rem;
+  font-size: 1.2rem;
 }
 body h3 {
   color: #2e8b57;
   text-decoration: underline;
   font-weight: bold;
+  font-size: 1rem;
+}
+body h4 {
+  color: #666;
+  font-weight: bold;
   font-size: 0.9rem;
 }
-body h4,
 body h5,
 body h6 {
   display: inline;
@@ -405,6 +410,7 @@ body abbr {
 body ul,
 body ol,
 body dl {
+  margin-top: 0rem;
   line-height: 1.725;
 }
 body ul ul,
@@ -453,7 +459,6 @@ html {
   margin: 0;
   padding: 0;
   height: 100%;
-  border-top: 2px solid #22272a;
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
 }
@@ -1099,19 +1104,26 @@ article .content h2:before {
   color: #030;
   content: "#";
   font-weight: bold;
-  font-size: 1rem;
+  font-size: 1.2rem;
 }
 article .content h3 {
-  font-family: Helvetica;
   font-weight: bold;
   color: rgba(86,124,119,0.8);
   text-decoration-line: none;
 }
 article .content h3:before {
   color: #363;
-  content: "☈";
+  content: "#";
   position: absolute;
   left: -1rem;
+}
+article .content h4:before {
+  position: absolute;
+  left: -1rem;
+  color: #000;
+  content: "#";
+  font-weight: bold;
+  font-size: 0.9rem;
 }
 article .content details {
   color: #cd853f;
