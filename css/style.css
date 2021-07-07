@@ -1112,7 +1112,7 @@ article header .postdate {
 }
 article .content h2:before {
   position: absolute;
-  left: -1rem;
+  left: -1.1rem;
   color: #030;
   content: "#";
   font-weight: bold;
@@ -1127,11 +1127,11 @@ article .content h3:before {
   color: #363;
   content: "#";
   position: absolute;
-  left: -1rem;
+  left: -1.1rem;
 }
 article .content h4:before {
   position: absolute;
-  left: -1rem;
+  left: -1.1rem;
   color: #000;
   content: "#";
   font-weight: bold;
