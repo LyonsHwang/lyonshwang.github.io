@@ -1096,6 +1096,11 @@ article header .author {
 article header .postdate {
   display: inline;
 }
+article .content input[type=checkbox] {
+  color: #008000;
+  margin-bottom: 0;
+  margin-top: 0;
+}
 article .content ul,
 article .content ol {
   margin: 0.5rem;
