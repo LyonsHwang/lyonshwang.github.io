@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta property="og:type" content="website">
+<meta property="og:title" content="Lyons Press">
+<meta property="og:url" content="http://lyons.press/tags/Blog/index.html">
+<meta property="og:site_name" content="Lyons Press">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="Lyons Hwang">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>Tag: Blog</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+  <!-- mouse fireworks -->
+  <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> 
+  <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+  <script type="text/javascript">
+    function updateCoords(e) {
+      pointerX = (e.clientX || e.touches[0].clientX) - canvasEl.getBoundingClientRect().left;
+      pointerY = (e.clientY || e.touches[0].clientY) - canvasEl.getBoundingClientRect().top;
+    }
+    function setParticuleDirection(e) {
+      var t = anime.random(0, 360) * Math.PI / 180
+      var a = anime.random(20, 40);
+      var n = [-1, 1][anime.random(0, 1)] * a;
+      return { x: e.x + n * Math.cos(t), y: e.y + n * Math.sin(t) };
+    }
+    function createParticule(e, t) {
+      var a = {};
+      a.x = e;
+      a.y = t;
+      a.color = colors[anime.random(0, colors.length - 1)];
+      a.radius = anime.random(4, 8);
+      a.endPos = setParticuleDirection(a);
+      a.draw = function () {
+        ctx.beginPath();
+        ctx.arc(a.x, a.y, a.radius, 0, 2 * Math.PI, !0);
+        ctx.fillStyle = a.color;
+        ctx.fill()
+      };
+      return a;
+    }
+    function createCircle(e, t) {
+      var a = {};
+      a.x = e;
+      a.y = t;
+      a.color = "#F00";
+      a.radius = 0.1;
+      a.alpha = 0.5;
+      a.lineWidth = 6;
+      a.draw = function () {
+        ctx.globalAlpha = a.alpha;
+        ctx.beginPath();
+        ctx.arc(a.x, a.y, a.radius, 0, 2 * Math.PI, !0);
+        ctx.lineWidth = a.lineWidth;
+        ctx.strokeStyle = a.color;
+        ctx.stroke();
+        ctx.globalAlpha = 1;
+      };
+      return a;
+    }
+
+    function renderParticule(e) {
+      for (var t = 0; t < e.animatables.length; t++) {
+        e.animatables[t].target.draw()
+      }
+    }
+
+    function animateParticules(e, t) {
+      for (var a = createCircle(e, t), n = [], i = 0; i < numberOfParticules; i++) {
+        n.push(createParticule(e, t));
+      }
+      anime.timeline().add({
+        targets: n,
+        x: function (e) { return e.endPos.x },
+        y: function (e) { return e.endPos.y },
+        radius: 0.05,
+        duration: anime.random(1200, 1800),
+        easing: "easeOutExpo",
+        update: renderParticule
+      });
+      anime.timeline().add({
+        targets: a,
+        radius: anime.random(20, 40),
+        lineWidth: 0,
+        alpha: { value: 0, easing: "linear", duration: anime.random(600, 800) },
+        duration: anime.random(1200, 1800),
+        easing: "easeOutExpo",
+        update: renderParticule,
+        offset: 0
+      })
+    }
+
+    function debounce(e, t) {
+      var a;
+      return function () {
+        var n = this;
+        var i = arguments;
+        clearTimeout(a);
+        a = setTimeout(function () { e.apply(n, i) }, t);
+      }
+    }
+    var canvasEl = document.querySelector(".fireworks");
+
+    if (canvasEl) {
+      var ctx = canvasEl.getContext("2d");
+      var numberOfParticules = 30;
+      var pointerX = 0;
+      var pointerY = 0;
+      var tap = "mousedown";
+      var colors = ["#FF1461", "#18FF92", "#5A87FF", "#FBF38C"];
+      var setCanvasSize = debounce(
+        function () {
+          canvasEl.width = 2 * window.innerWidth;
+          canvasEl.height = 2 * window.innerHeight;
+          canvasEl.style.width = window.innerWidth + "px";
+          canvasEl.style.height = window.innerHeight + "px";
+          canvasEl.getContext("2d").scale(2, 2);
+        },
+        500
+      );
+      var render = anime({
+        duration: 1 / 0,
+        update: function () { ctx.clearRect(0, 0, canvasEl.width, canvasEl.height) }
+      });
+      document.addEventListener(
+        tap,
+        function (e) {
+          if ("sidebar" !== e.target.id && "toggle-sidebar" !== e.target.id && "A" !== e.target.nodeName && "IMG" !== e.target.nodeName) {
+            render.play();
+            updateCoords(e);
+            animateParticules(pointerX, pointerY);
+          }
+        },
+        !1
+      );
+      setCanvasSize();
+      window.addEventListener("resize", setCanvasSize, !1);
+    }
+  </script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="max-width mx-auto px3 ltr">    
+    <div class="content index py4">
+        
+          <header id="header">
+  <a href="/">
+  
+    
+      <div id="logo" style="background-image: url(/images/logo.png);"></div>
+    
+  
+    <div id="title">
+      <h1 style="color: DarkGoldenrod">Lyons Press</h1>
+    </div>
+  </a>
+  <div id="nav">
+    <ul>
+      <li class="icon">
+        <a href="#" aria-label="Menu"><i class="fas fa-bars fa-2x"></i></a>
+      </li>
+       
+        <li><a href="/">Home</a></li>
+       
+        <li><a href="/about/">About</a></li>
+       
+        <li><a href="/archives/">Writing</a></li>
+       
+        <li><a target="_blank" rel="noopener" href="https://github.com/LyonsHwang/lyonshwang.github.io">Projects</a></li>
+      
+    </ul>
+  </div>
+</header>
+
+        
+        <div id="archive">
+  <ul class="post-list">
+    
+    
+    
+    
+      
+      
+      
+      
+        <li class="post-year"><h2>2022</h2></li>
+      
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2022-04-23T03:28:08.000Z" itemprop="datePublished">2022-04-23</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/archives/Hello-World/">Hello World!</a>
+    
+
+
+</span>
+      </li>
+    
+  </ul>
+  
+
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2021-2022
+    Lyons Hwang
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/LyonsHwang/lyonshwang.github.io">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<!-- <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+</body>
+</html>
