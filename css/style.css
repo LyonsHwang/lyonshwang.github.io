@@ -329,8 +329,13 @@ body .h1 {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
 }
-h2,
-.h2 {
+body h1.posttitle {
+  position: relative;
+  left: 0rem;
+  padding-bottom: 0.5rem;
+}
+body h2,
+body .h2 {
   margin-top: 0rem;
   position: relative;
   display: block;
@@ -340,86 +345,86 @@ h2,
   font-weight: bold;
   font-size: 1.2rem;
 }
-h3 {
+body h3 {
   color: #2e8b57;
   text-decoration: underline;
   font-weight: bold;
   font-size: 1rem;
 }
-h4 {
+body h4 {
   color: #666;
   font-weight: bold;
   font-size: 0.9rem;
 }
-h5,
-h6 {
+body h5,
+body h6 {
   display: inline;
   text-decoration: none;
   color: #666;
   font-weight: bold;
   font-size: 0.9rem;
 }
-h3,
-h4,
-h5,
-h6 {
+body h3,
+body h4,
+body h5,
+body h6 {
   margin-top: 0.9rem;
   margin-bottom: 0.5rem;
 }
-hr {
+body hr {
   border: 0.5px dashed #666;
   opacity: 0.5;
   margin: 0;
   margin-top: 20px;
   margin-bottom: 20px;
 }
-strong {
+body strong {
   font-weight: bold;
 }
-em,
-cite {
+body em,
+body cite {
   font-style: italic;
 }
-sup,
-sub {
+body sup,
+body sub {
   position: relative;
   vertical-align: baseline;
   font-size: 0.75em;
   line-height: 0;
 }
-sup {
+body sup {
   top: -0.5em;
 }
-sub {
+body sub {
   bottom: -0.2em;
 }
-small {
+body small {
   font-size: 0.85em;
 }
-acronym,
-abbr {
+body acronym,
+body abbr {
   border-bottom: 1px dotted;
 }
-ul,
-ol,
-dl {
+body ul,
+body ol,
+body dl {
   margin-top: 0rem;
   line-height: 1.725;
 }
-ul ul,
-ol ul,
-ul ol,
-ol ol {
+body ul ul,
+body ol ul,
+body ul ol,
+body ol ol {
   margin-top: 0;
   margin-bottom: 0;
 }
-ol {
+body ol {
   list-style: decimal;
 }
-dt {
+body dt {
   font-weight: bold;
 }
-table {
+body table {
   width: 100%;
   border-collapse: collapse;
   text-align: left;
@@ -427,14 +432,14 @@ table {
   overflow: auto;
   display: block;
 }
-th {
+body th {
   padding: 8px;
   border-bottom: 1px dashed #666;
   color: #2e8b57;
   font-weight: bold;
   font-size: 13px;
 }
-td {
+body td {
   padding: 0 8px;
   border-bottom: none;
 }
